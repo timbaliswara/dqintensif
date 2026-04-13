@@ -195,17 +195,24 @@ export default async function Home() {
                     desc: "Jadikan Al-Qur’an ruh dalam segala aktivitasmu, maka kemudahan dan keberkahan menyertaimu.",
                   },
                 ].map((item) => (
-                  <Card key={item.title} className="bg-background">
+                  <Card key={item.title} className="bg-background self-start">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-base">{item.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="text-sm leading-7 text-muted-foreground">
                       {Array.isArray(item.desc) ? (
-                        <ol className="grid list-decimal gap-1 pl-4">
-                          {item.desc.map((line) => (
-                            <li key={line}>{line}</li>
-                          ))}
-                        </ol>
+                        <>
+                          <div className="max-h-64 overflow-auto pr-2 leading-6">
+                            <ol className="grid list-decimal gap-1 pl-4">
+                              {item.desc.map((line) => (
+                                <li key={line}>{line}</li>
+                              ))}
+                            </ol>
+                          </div>
+                          <div className="mt-2 text-xs text-muted-foreground">
+                            Scroll untuk melihat semua poin misi.
+                          </div>
+                        </>
                       ) : (
                         <p>{item.desc}</p>
                       )}
