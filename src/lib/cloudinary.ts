@@ -4,6 +4,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { Readable } from "node:stream";
 
 export function isCloudinaryConfigured() {
+  if (process.env.CLOUDINARY_URL) return true;
   return Boolean(
     process.env.CLOUDINARY_CLOUD_NAME &&
       process.env.CLOUDINARY_API_KEY &&
@@ -16,6 +17,25 @@ function getCloudinaryFolder() {
 }
 
 function configureCloudinary() {
+  const cloudinaryUrl = process.env.CLOUDINARY_URL;
+  if (cloudinaryUrl) {
+    // Supports CLOUDINARY_URL format: cloudinary://<api_key>:<api_secret>@<cloud_name>
+    const u = new URL(cloudinaryUrl);
+    const cloudName = u.hostname;
+    const apiKey = decodeURIComponent(u.username);
+    const apiSecret = decodeURIComponent(u.password);
+    if (!cloudName || !apiKey || !apiSecret) {
+      throw new Error("CLOUDINARY_URL is invalid.");
+    }
+    cloudinary.config({
+      cloud_name: cloudName,
+      api_key: apiKey,
+      api_secret: apiSecret,
+      secure: true,
+    });
+    return;
+  }
+
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
@@ -63,4 +83,3 @@ export async function uploadImageToCloudinary(params: {
 
   return result.secure_url;
 }
-
