@@ -41,7 +41,7 @@ const fallbackManagement: readonly ManagementMember[] = [
     role: "Pengasuh Pesantren Putri",
     unit: "Pengasuh",
     termStart: "2026",
-    photo: "/images/activities/ustadzah-menyampaikan-materi.webp",
+    photo: "/images/placeholders/ustadzah.svg",
     bio: "Mengarahkan visi pembinaan santriwati: adab, riyadhoh, ritme ibadah, serta ketenangan belajar. Profil ini masih contoh dan dapat diganti dengan data resmi.",
     order: 1,
     published: true,
@@ -74,7 +74,7 @@ const fallbackManagement: readonly ManagementMember[] = [
     role: "Kepala Bagian Diniyah",
     unit: "Diniyah",
     termStart: "2026",
-    photo: "/images/activities/ustadz-menyampaikan-materi.webp",
+    photo: "/images/placeholders/ustadz.svg",
     bio: "Mengelola kurikulum dirosah dan kajian turats (bersanad) agar pemahaman santri tertib, bertahap, dan beradab.",
     order: 4,
     published: true,
@@ -97,4 +97,3 @@ export async function listManagementMembers(opts?: { includeDraft?: boolean }) {
   const visible = opts?.includeDraft ? list : list.filter((m) => m.published);
   return [...visible].sort((a, b) => a.order - b.order);
 }
-

@@ -187,10 +187,10 @@ export default async function ManajemenPage() {
         title="Pengelolaan yang rapi, pengasuhan yang hangat, kanal resmi yang jelas."
         description="Kami merangkum struktur pengelola untuk menambah rasa aman dan trust calon wali santri. Data di halaman ini masih contoh dan bisa Anda ganti dengan profil resmi."
         imageSrc={[
-          "/images/activities/ustadzah-menyampaikan-materi.webp",
+          "/images/placeholders/ustadzah.svg",
           "/images/activities/halaqah-muslimah.webp",
         ]}
-        imageAlt={["Ustadzah menyampaikan materi", "Halaqah santriwati"]}
+        imageAlt={["Placeholder foto ustadzah", "Halaqah santriwati"]}
       />
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">

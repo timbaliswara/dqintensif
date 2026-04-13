@@ -22,11 +22,11 @@ export default function AsatidzPage() {
         title="Pembina hadir dekat: menuntun, mencontohkan, dan menjaga adab."
         description="Pembinaan berjalan melalui halaqah, pengasuhan asrama, dan kajian turats yang dibina ust dan ustadzah bersanad. Fokusnya bukan hanya hasil, tetapi juga adab, ketenangan, dan istiqamah."
         imageSrc={[
-          "/images/activities/ustadzah-menyampaikan-materi.webp",
+          "/images/placeholders/ustadzah.svg",
           "/images/activities/halaqah-muslimah.webp",
         ]}
         imageAlt={[
-          "Ustadzah menyampaikan materi",
+          "Placeholder foto ustadzah",
           "Halaqah santriwati",
         ]}
       />
