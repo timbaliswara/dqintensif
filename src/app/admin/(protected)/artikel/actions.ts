@@ -37,123 +37,186 @@ function parseTags(raw: string) {
     .slice(0, 8);
 }
 
+function toUserMessage(err: unknown) {
+  if (err instanceof Error) {
+    const msg = err.message.trim();
+    if (!msg) return "Terjadi kesalahan. Silakan coba lagi.";
+    const lower = msg.toLowerCase();
+    if (lower.includes("slug sudah dipakai")) return "Slug sudah dipakai.";
+    if (lower.includes("artikel tidak ditemukan")) return "Artikel tidak ditemukan.";
+    if (lower.includes("format gambar")) return msg;
+    if (lower.includes("ukuran gambar")) return msg;
+    if (lower.includes("cloudinary")) {
+      return "Upload cover gagal. Periksa konfigurasi Cloudinary dan coba lagi.";
+    }
+    if (lower.includes("supabase")) {
+      return "Penyimpanan gagal. Periksa konfigurasi Supabase dan coba lagi.";
+    }
+    if (lower.includes("field '")) {
+      return "Lengkapi semua field yang wajib diisi.";
+    }
+    return "Terjadi kesalahan. Silakan coba lagi.";
+  }
+  return "Terjadi kesalahan. Silakan coba lagi.";
+}
+
+function noticeUrl(path: string, params: Record<string, string | undefined>) {
+  const sp = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) {
+    if (!v) continue;
+    sp.set(k, v);
+  }
+  const qs = sp.toString();
+  return qs ? `${path}?${qs}` : path;
+}
+
 export async function createArticleAction(formData: FormData) {
   await requireAdmin("/admin/artikel");
-  const title = requireField(formData.get("title"), "title");
-  const slug = slugify(requireField(formData.get("slug") ?? title, "slug"));
-  const contentHtmlRaw = requireField(formData.get("contentHtml"), "contentHtml");
-  const coverPath = String(formData.get("coverImage") ?? "").trim();
-  const coverFile = formData.get("coverFile");
+  let redirectTo = "/admin/artikel";
 
-  const coverImage =
-    coverFile instanceof File && coverFile.size > 0
-      ? await saveCoverUpload(coverFile, slug)
-      : requireField(coverPath, "coverImage");
+  try {
+    const title = requireField(formData.get("title"), "title");
+    const slug = slugify(requireField(formData.get("slug") ?? title, "slug"));
+    const contentHtmlRaw = requireField(formData.get("contentHtml"), "contentHtml");
+    const coverPath = String(formData.get("coverImage") ?? "").trim();
+    const coverFile = formData.get("coverFile");
 
-  const verified = String(formData.get("verified") ?? "") === "on";
-  const verification = verified
-    ? {
-        status: "terverifikasi" as const,
-        by: requireField(formData.get("verifiedBy"), "verifiedBy"),
-        date: requireField(formData.get("verifiedDate"), "verifiedDate"),
-        note: String(formData.get("verifiedNote") ?? "").trim() || undefined,
-      }
-    : undefined;
+    const coverImage =
+      coverFile instanceof File && coverFile.size > 0
+        ? await saveCoverUpload(coverFile, slug)
+        : requireField(coverPath, "coverImage");
 
-  const article: Article = {
-    slug,
-    title,
-    excerpt: requireField(formData.get("excerpt"), "excerpt"),
-    date: requireField(formData.get("date"), "date"),
-    dateISO: requireField(formData.get("dateISO"), "dateISO"),
-    tags: parseTags(String(formData.get("tags") ?? "")),
-    author: {
-      name: requireField(formData.get("authorName"), "authorName"),
-      role: requireField(formData.get("authorRole"), "authorRole"),
-    },
-    verification,
-    coverImage,
-    readTime: requireField(formData.get("readTime"), "readTime"),
-    contentHtml: sanitizeRichHtml(contentHtmlRaw),
-  };
+    const verified = String(formData.get("verified") ?? "") === "on";
+    const verification = verified
+      ? {
+          status: "terverifikasi" as const,
+          by: requireField(formData.get("verifiedBy"), "verifiedBy"),
+          date: requireField(formData.get("verifiedDate"), "verifiedDate"),
+          note: String(formData.get("verifiedNote") ?? "").trim() || undefined,
+        }
+      : undefined;
 
-  const list = await listArticles();
-  if (list.some((a) => a.slug === article.slug)) {
-    throw new Error("Slug sudah dipakai.");
+    const article: Article = {
+      slug,
+      title,
+      excerpt: requireField(formData.get("excerpt"), "excerpt"),
+      date: requireField(formData.get("date"), "date"),
+      dateISO: requireField(formData.get("dateISO"), "dateISO"),
+      tags: parseTags(String(formData.get("tags") ?? "")),
+      author: {
+        name: requireField(formData.get("authorName"), "authorName"),
+        role: requireField(formData.get("authorRole"), "authorRole"),
+      },
+      verification,
+      coverImage,
+      readTime: requireField(formData.get("readTime"), "readTime"),
+      contentHtml: sanitizeRichHtml(contentHtmlRaw),
+    };
+
+    const list = await listArticles();
+    if (list.some((a) => a.slug === article.slug)) {
+      throw new Error("Slug sudah dipakai.");
+    }
+
+    await writeArticles([article, ...list]);
+    revalidatePath("/artikel");
+    revalidatePath(`/artikel/${article.slug}`);
+    revalidatePath("/admin/artikel");
+    redirectTo = noticeUrl(`/admin/artikel/${article.slug}`, { created: "1" });
+  } catch (err) {
+    redirectTo = noticeUrl("/admin/artikel/baru", {
+      error: "1",
+      msg: toUserMessage(err),
+    });
   }
 
-  await writeArticles([article, ...list]);
-  revalidatePath("/artikel");
-  revalidatePath(`/artikel/${article.slug}`);
-  revalidatePath("/admin/artikel");
-  redirect(`/admin/artikel/${article.slug}?created=1`);
+  redirect(redirectTo);
 }
 
 export async function updateArticleAction(formData: FormData) {
   await requireAdmin("/admin/artikel");
-  const currentSlug = requireField(formData.get("currentSlug"), "currentSlug");
-  const title = requireField(formData.get("title"), "title");
-  const slug = slugify(requireField(formData.get("slug") ?? currentSlug, "slug"));
-  const contentHtmlRaw = requireField(formData.get("contentHtml"), "contentHtml");
-  const coverPath = String(formData.get("coverImage") ?? "").trim();
-  const coverFile = formData.get("coverFile");
+  let redirectTo = "/admin/artikel";
+  let currentSlug = "";
 
-  const list = await listArticles();
-  const idx = list.findIndex((a) => a.slug === currentSlug);
-  if (idx < 0) throw new Error("Artikel tidak ditemukan.");
+  try {
+    currentSlug = requireField(formData.get("currentSlug"), "currentSlug");
+    const title = requireField(formData.get("title"), "title");
+    const slug = slugify(requireField(formData.get("slug") ?? currentSlug, "slug"));
+    const contentHtmlRaw = requireField(formData.get("contentHtml"), "contentHtml");
+    const coverPath = String(formData.get("coverImage") ?? "").trim();
+    const coverFile = formData.get("coverFile");
 
-  const coverImage =
-    coverFile instanceof File && coverFile.size > 0
-      ? await saveCoverUpload(coverFile, slug)
-      : requireField(coverPath, "coverImage");
+    const list = await listArticles();
+    const idx = list.findIndex((a) => a.slug === currentSlug);
+    if (idx < 0) throw new Error("Artikel tidak ditemukan.");
 
-  const verified = String(formData.get("verified") ?? "") === "on";
-  const verification = verified
-    ? {
-        status: "terverifikasi" as const,
-        by: requireField(formData.get("verifiedBy"), "verifiedBy"),
-        date: requireField(formData.get("verifiedDate"), "verifiedDate"),
-        note: String(formData.get("verifiedNote") ?? "").trim() || undefined,
-      }
-    : undefined;
+    const coverImage =
+      coverFile instanceof File && coverFile.size > 0
+        ? await saveCoverUpload(coverFile, slug)
+        : requireField(coverPath, "coverImage");
 
-  const updated: Article = {
-    slug,
-    title,
-    excerpt: requireField(formData.get("excerpt"), "excerpt"),
-    date: requireField(formData.get("date"), "date"),
-    dateISO: requireField(formData.get("dateISO"), "dateISO"),
-    tags: parseTags(String(formData.get("tags") ?? "")),
-    author: {
-      name: requireField(formData.get("authorName"), "authorName"),
-      role: requireField(formData.get("authorRole"), "authorRole"),
-    },
-    verification,
-    coverImage,
-    readTime: requireField(formData.get("readTime"), "readTime"),
-    contentHtml: sanitizeRichHtml(contentHtmlRaw),
-  };
+    const verified = String(formData.get("verified") ?? "") === "on";
+    const verification = verified
+      ? {
+          status: "terverifikasi" as const,
+          by: requireField(formData.get("verifiedBy"), "verifiedBy"),
+          date: requireField(formData.get("verifiedDate"), "verifiedDate"),
+          note: String(formData.get("verifiedNote") ?? "").trim() || undefined,
+        }
+      : undefined;
 
-  const next = [...list];
-  next.splice(idx, 1);
-  if (next.some((a) => a.slug === updated.slug)) {
-    throw new Error("Slug sudah dipakai.");
+    const updated: Article = {
+      slug,
+      title,
+      excerpt: requireField(formData.get("excerpt"), "excerpt"),
+      date: requireField(formData.get("date"), "date"),
+      dateISO: requireField(formData.get("dateISO"), "dateISO"),
+      tags: parseTags(String(formData.get("tags") ?? "")),
+      author: {
+        name: requireField(formData.get("authorName"), "authorName"),
+        role: requireField(formData.get("authorRole"), "authorRole"),
+      },
+      verification,
+      coverImage,
+      readTime: requireField(formData.get("readTime"), "readTime"),
+      contentHtml: sanitizeRichHtml(contentHtmlRaw),
+    };
+
+    const next = [...list];
+    next.splice(idx, 1);
+    if (next.some((a) => a.slug === updated.slug)) {
+      throw new Error("Slug sudah dipakai.");
+    }
+    next.splice(idx, 0, updated);
+
+    await writeArticles(next);
+    revalidatePath("/artikel");
+    revalidatePath(`/artikel/${updated.slug}`);
+    revalidatePath("/admin/artikel");
+    redirectTo = noticeUrl(`/admin/artikel/${updated.slug}`, { updated: "1" });
+  } catch (err) {
+    redirectTo = currentSlug
+      ? noticeUrl(`/admin/artikel/${currentSlug}`, { error: "1", msg: toUserMessage(err) })
+      : noticeUrl("/admin/artikel", { error: "1", msg: toUserMessage(err) });
   }
-  next.splice(idx, 0, updated);
 
-  await writeArticles(next);
-  revalidatePath("/artikel");
-  revalidatePath(`/artikel/${updated.slug}`);
-  revalidatePath("/admin/artikel");
-  redirect(`/admin/artikel/${updated.slug}?updated=1`);
+  redirect(redirectTo);
 }
 
 export async function deleteArticleAction(formData: FormData) {
   await requireAdmin("/admin/artikel");
-  const slug = requireField(formData.get("slug"), "slug");
-  const list = await listArticles();
-  await writeArticles(list.filter((a) => a.slug !== slug));
-  revalidatePath("/artikel");
-  revalidatePath("/admin/artikel");
-  redirect("/admin/artikel?deleted=1");
+  let redirectTo = "/admin/artikel";
+
+  try {
+    const slug = requireField(formData.get("slug"), "slug");
+    const list = await listArticles();
+    await writeArticles(list.filter((a) => a.slug !== slug));
+    revalidatePath("/artikel");
+    revalidatePath("/admin/artikel");
+    redirectTo = noticeUrl("/admin/artikel", { deleted: "1" });
+  } catch (err) {
+    redirectTo = noticeUrl("/admin/artikel", { error: "1", msg: toUserMessage(err) });
+  }
+
+  redirect(redirectTo);
 }

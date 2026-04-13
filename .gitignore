@@ -40,6 +40,9 @@ yarn-error.log*
 # uploads (use Cloudinary in production)
 /public/uploads/
 
+# local content store fallback (Supabase in production)
+/data/content/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
