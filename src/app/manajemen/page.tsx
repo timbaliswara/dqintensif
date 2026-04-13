@@ -119,9 +119,12 @@ export default async function ManajemenPage() {
                   </Button>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
                   {list.map((m) => (
-                    <Card key={m.id} className="overflow-hidden bg-background">
+                    <Card
+                      key={m.id}
+                      className="mb-4 break-inside-avoid overflow-hidden bg-background"
+                    >
                       <div className="relative aspect-[16/10] w-full overflow-hidden">
                         <Image
                           src={m.photo}
