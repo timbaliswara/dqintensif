@@ -36,7 +36,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 lg:col-span-7 sm:grid-cols-3">
+          <div className="grid items-start gap-4 lg:col-span-7 sm:grid-cols-3">
             {[
               {
                 title: "Visi",
