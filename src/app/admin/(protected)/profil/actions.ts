@@ -36,6 +36,15 @@ function parsePairLine(line: string) {
   return null;
 }
 
+function parsePhones(raw: string) {
+  const list = splitLines(raw)
+    .flatMap((line) => line.split(","))
+    .map((v) => v.trim())
+    .filter(Boolean);
+  // de-dupe
+  return Array.from(new Set(list));
+}
+
 export async function updateSiteConfigAction(formData: FormData) {
   await requireAdmin("/admin/profil");
 
@@ -61,6 +70,11 @@ export async function updateSiteConfigAction(formData: FormData) {
     ...current.contact,
     address: requireField(formData.get("contactAddress"), "contactAddress"),
     phone: requireField(formData.get("contactPhone"), "contactPhone"),
+    whatsappNumbers: (() => {
+      const raw = String(formData.get("contactWhatsapps") ?? "").trim();
+      const nums = raw ? parsePhones(raw) : [];
+      return nums.length ? nums : [requireField(formData.get("contactPhone"), "contactPhone")];
+    })(),
     email: requireField(formData.get("contactEmail"), "contactEmail"),
     hours: requireField(formData.get("contactHours"), "contactHours"),
     mapsLabel: requireField(formData.get("contactMapsLabel"), "contactMapsLabel"),
@@ -102,4 +116,3 @@ export async function updateSiteConfigAction(formData: FormData) {
   revalidatePath("/admin/profil");
   redirect("/admin/profil?updated=1");
 }
-

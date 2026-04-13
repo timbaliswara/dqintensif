@@ -14,6 +14,7 @@ export type SiteConfig = {
   contact: {
     address: string;
     phone: string;
+    whatsappNumbers?: string[];
     email: string;
     hours: string;
     coordinates: { lat: number; lon: number };
@@ -32,6 +33,10 @@ export type SiteConfig = {
 };
 
 export async function getSiteConfig(): Promise<SiteConfig> {
+  const seedWhatsapps = (pondok.contact as { whatsappNumbers?: readonly string[] })
+    .whatsappNumbers;
+  const defaultWhatsapps: readonly string[] =
+    seedWhatsapps && seedWhatsapps.length ? seedWhatsapps : [pondok.contact.phone];
   const fallback: SiteConfig = {
     profile: {
       name: pondok.profile.name,
@@ -42,7 +47,8 @@ export async function getSiteConfig(): Promise<SiteConfig> {
     },
     contact: {
       address: pondok.contact.address,
-      phone: pondok.contact.phone,
+      phone: defaultWhatsapps[0] ?? pondok.contact.phone,
+      whatsappNumbers: [...defaultWhatsapps],
       email: pondok.contact.email,
       hours: pondok.contact.hours,
       coordinates: {
@@ -62,5 +68,32 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       officialChannels: pondok.legal.officialChannels.map((c) => ({ label: c.label, value: c.value })),
     },
   };
-  return readSiteConfig<SiteConfig>(fallback);
+
+  const value = await readSiteConfig<SiteConfig>(fallback);
+
+  // Normalize to keep backward-compat with older saved shapes.
+  return {
+    profile: { ...fallback.profile, ...(value.profile ?? {}) },
+    contact: {
+      ...fallback.contact,
+      ...(value.contact ?? {}),
+      coordinates: {
+        ...fallback.contact.coordinates,
+        ...(value.contact?.coordinates ?? {}),
+      },
+      whatsappNumbers:
+        value.contact?.whatsappNumbers?.length
+          ? value.contact.whatsappNumbers
+          : fallback.contact.whatsappNumbers,
+    },
+    legal: {
+      ...fallback.legal,
+      ...(value.legal ?? {}),
+      foundation: value.legal?.foundation?.length ? value.legal.foundation : fallback.legal.foundation,
+      documents: value.legal?.documents?.length ? value.legal.documents : fallback.legal.documents,
+      officialChannels: value.legal?.officialChannels?.length
+        ? value.legal.officialChannels
+        : fallback.legal.officialChannels,
+    },
+  };
 }

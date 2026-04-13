@@ -674,7 +674,13 @@ export default async function Home() {
                     {contact.address}
                   </div>
                   <div className="mt-3 grid gap-1 text-muted-foreground">
-                    <div>Telepon/WA: {contact.phone}</div>
+                    <div>
+                      Telepon/WA:{" "}
+                      {(contact.whatsappNumbers?.length
+                        ? contact.whatsappNumbers
+                        : [contact.phone]
+                      ).join(" · ")}
+                    </div>
                     <div>Email: {contact.email}</div>
                     <div>Jam: {contact.hours}</div>
                   </div>
@@ -687,7 +693,13 @@ export default async function Home() {
                     <CardTitle className="text-base">Kirim pesan</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ContactForm />
+                    <ContactForm
+                      whatsappNumbers={
+                        contact.whatsappNumbers?.length
+                          ? contact.whatsappNumbers
+                          : [contact.phone]
+                      }
+                    />
                   </CardContent>
                 </Card>
               </div>

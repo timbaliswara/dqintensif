@@ -36,6 +36,10 @@ function Input({
 
 export default async function AdminProfilePage() {
   const { profile, contact, legal } = await getSiteConfig();
+  const whatsapps = (contact.whatsappNumbers?.length
+    ? contact.whatsappNumbers
+    : [contact.phone]
+  ).join("\n");
   const draftKey = "admin-profil";
 
   const foundationText = legal.foundation
@@ -121,12 +125,25 @@ export default async function AdminProfilePage() {
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label>Telepon/WhatsApp</Label>
+                  <Label>Nomor utama (Telepon/WA)</Label>
                   <Input name="contactPhone" defaultValue={contact.phone} />
                 </div>
                 <div className="space-y-2">
                   <Label>Email</Label>
                   <Input name="contactEmail" defaultValue={contact.email} type="email" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>Nomor WhatsApp (opsional, 1 baris = 1 nomor)</Label>
+                <textarea
+                  name="contactWhatsapps"
+                  rows={3}
+                  defaultValue={whatsapps}
+                  className="w-full rounded-2xl border bg-background p-3 text-sm leading-7 outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                  placeholder="+62 857-2808-3638&#10;+62 896-8257-2939"
+                />
+                <div className="text-xs text-muted-foreground">
+                  Jika diisi, tombol WhatsApp di website akan menawarkan beberapa nomor admin.
                 </div>
               </div>
               <div className="grid gap-4 md:grid-cols-2">

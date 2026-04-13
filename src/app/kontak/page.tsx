@@ -12,8 +12,14 @@ export const metadata = {
 
 export default async function KontakPage() {
   const { profile, contact } = await getSiteConfig();
-  const waNumber = contact.phone.replace(/\D/g, "");
-  const waHref = `https://wa.me/${waNumber}`;
+  const whatsapps = contact.whatsappNumbers?.length
+    ? contact.whatsappNumbers
+    : [contact.phone];
+  const waLinks = whatsapps.map((n) => ({
+    raw: n,
+    digits: n.replace(/\D/g, ""),
+    href: `https://wa.me/${n.replace(/\D/g, "")}`,
+  }));
   const mapsHref =
     contact.mapsUrl ??
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -51,16 +57,20 @@ export default async function KontakPage() {
                 {contact.address}
               </div>
               <div className="mt-4 grid gap-1 text-sm text-muted-foreground">
-                <div>Telepon/WA: {contact.phone}</div>
+                <div>
+                  Telepon/WA: {whatsapps.join(" · ")}
+                </div>
                 <div>Email: {contact.email}</div>
                 <div>Jam: {contact.hours}</div>
               </div>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <Button asChild className="rounded-full">
-                  <a href={waHref} target="_blank" rel="noreferrer">
-                    WhatsApp Admin
-                  </a>
-                </Button>
+                {waLinks.slice(0, 2).map((wa, idx) => (
+                  <Button key={wa.digits || idx} asChild className="rounded-full">
+                    <a href={wa.href} target="_blank" rel="noreferrer">
+                      WhatsApp Admin {idx + 1}
+                    </a>
+                  </Button>
+                ))}
                 <Button asChild variant="outline" className="rounded-full">
                   <a href={mapsHref} target="_blank" rel="noreferrer">
                     Buka Maps
@@ -90,7 +100,7 @@ export default async function KontakPage() {
                 <CardTitle className="text-base">Kirim pesan</CardTitle>
               </CardHeader>
               <CardContent>
-                <ContactForm />
+                <ContactForm whatsappNumbers={whatsapps} />
               </CardContent>
             </Card>
 

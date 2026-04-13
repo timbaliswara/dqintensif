@@ -8,7 +8,11 @@ import { Separator } from "@/components/ui/separator";
 
 export async function SiteFooter() {
   const { profile, contact, legal } = await getSiteConfig();
-  const waNumber = contact.phone.replace(/\D/g, "");
+  const whatsapps = contact.whatsappNumbers?.length
+    ? contact.whatsappNumbers
+    : [contact.phone];
+  const primaryWa = whatsapps[0] ?? contact.phone;
+  const waNumber = primaryWa.replace(/\D/g, "");
   const waHref = `https://wa.me/${waNumber}`;
   const mapsHref =
     contact.mapsUrl ??
@@ -136,9 +140,22 @@ export async function SiteFooter() {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="size-4 shrink-0 text-foreground/70" />
-                <a href={`tel:${waNumber}`} className="hover:text-foreground">
-                  {contact.phone}
-                </a>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  {whatsapps.slice(0, 2).map((n, idx) => {
+                    const digits = n.replace(/\D/g, "");
+                    return (
+                      <a
+                        key={digits || idx}
+                        href={`https://wa.me/${digits}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hover:text-foreground"
+                      >
+                        {n}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="size-4 shrink-0 text-foreground/70" />

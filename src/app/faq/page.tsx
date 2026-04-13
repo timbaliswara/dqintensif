@@ -13,6 +13,9 @@ export const metadata = {
 export default async function FaqPage() {
   const base = await listFaqItems();
   const { contact } = await getSiteConfig();
+  const whatsapps = contact.whatsappNumbers?.length
+    ? contact.whatsappNumbers
+    : [contact.phone];
   const items: readonly { question: string; answer: string }[] = [
     ...base,
     {
@@ -63,7 +66,7 @@ export default async function FaqPage() {
                 Hubungi admin melalui halaman Kontak untuk konsultasi PSB, jadwal
                 kunjungan, dan permintaan brosur.
                 <div className="mt-3 font-medium text-foreground/85">
-                  {contact.phone}
+                  {whatsapps.join(" · ")}
                 </div>
               </CardContent>
             </Card>

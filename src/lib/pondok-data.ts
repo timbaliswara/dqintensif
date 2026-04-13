@@ -106,8 +106,9 @@ export const pondok = {
       },
     ],
     officialChannels: [
-      { label: "Website resmi", value: "dqscemani.id" },
-      { label: "WhatsApp admin", value: "+62 812-3456-7890" },
+      { label: "Website resmi", value: "dqsintensif.com" },
+      { label: "WhatsApp PSB 1", value: "+62 857-2808-3638" },
+      { label: "WhatsApp PSB 2", value: "+62 896-8257-2939" },
       { label: "Email", value: "info@dqscemani.id" },
       { label: "Pengumuman resmi", value: "/pengumuman" },
     ],
@@ -371,7 +372,8 @@ export const pondok = {
   contact: {
     address:
       "Jl. Semen Romo Cemani, Ngruki, Cemani, Kec. Grogol, Kabupaten Sukoharjo, Jawa Tengah 57552",
-    phone: "+62 812-3456-7890",
+    phone: "+62 857-2808-3638",
+    whatsappNumbers: ["+62 857-2808-3638", "+62 896-8257-2939"],
     email: "info@dqscemani.id",
     hours: "Senin–Sabtu · 08.00–16.00 WIB",
     coordinates: { lat: -7.585105, lon: 110.810785 },
