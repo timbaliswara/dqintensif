@@ -49,6 +49,137 @@ export default async function ManajemenPage() {
     byUnit.set(m.unit, list);
   }
 
+  function UnitCards({ list }: { list: typeof members }) {
+    if (list.length === 1) {
+      return (
+        <div className="flex justify-center">
+          <div className="w-full max-w-2xl">
+            {list.map((m) => (
+              <Card
+                key={m.id}
+                className="overflow-hidden bg-background"
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={m.photo}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 672px, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0" />
+                </div>
+                <CardHeader className="space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                      <BadgeCheck className="size-3.5 text-primary" />
+                      <span className="font-medium text-foreground/85">
+                        {m.role}
+                      </span>
+                    </div>
+                    {termLabel(m.termStart, m.termEnd) ? (
+                      <Badge variant="outline" className="rounded-full">
+                        Masa tugas {termLabel(m.termStart, m.termEnd)}
+                      </Badge>
+                    ) : null}
+                  </div>
+                  <CardTitle className="text-base">{m.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm leading-7 text-muted-foreground">
+                  {m.bio}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (list.length === 2) {
+      return (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {list.map((m) => (
+            <Card
+              key={m.id}
+              className="overflow-hidden bg-background"
+            >
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
+                <Image
+                  src={m.photo}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0" />
+              </div>
+              <CardHeader className="space-y-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                    <BadgeCheck className="size-3.5 text-primary" />
+                    <span className="font-medium text-foreground/85">
+                      {m.role}
+                    </span>
+                  </div>
+                  {termLabel(m.termStart, m.termEnd) ? (
+                    <Badge variant="outline" className="rounded-full">
+                      Masa tugas {termLabel(m.termStart, m.termEnd)}
+                    </Badge>
+                  ) : null}
+                </div>
+                <CardTitle className="text-base">{m.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm leading-7 text-muted-foreground">
+                {m.bio}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        {list.map((m) => (
+          <Card
+            key={m.id}
+            className="mb-4 break-inside-avoid overflow-hidden bg-background"
+          >
+            <div className="relative aspect-[16/10] w-full overflow-hidden">
+              <Image
+                src={m.photo}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0" />
+            </div>
+            <CardHeader className="space-y-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                  <BadgeCheck className="size-3.5 text-primary" />
+                  <span className="font-medium text-foreground/85">
+                    {m.role}
+                  </span>
+                </div>
+                {termLabel(m.termStart, m.termEnd) ? (
+                  <Badge variant="outline" className="rounded-full">
+                    Masa tugas {termLabel(m.termStart, m.termEnd)}
+                  </Badge>
+                ) : null}
+              </div>
+              <CardTitle className="text-base">{m.name}</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm leading-7 text-muted-foreground">
+              {m.bio}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <SiteShell>
       <PageHero
@@ -119,44 +250,7 @@ export default async function ManajemenPage() {
                   </Button>
                 </div>
 
-                <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-                  {list.map((m) => (
-                    <Card
-                      key={m.id}
-                      className="mb-4 break-inside-avoid overflow-hidden bg-background"
-                    >
-                      <div className="relative aspect-[16/10] w-full overflow-hidden">
-                        <Image
-                          src={m.photo}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0" />
-                      </div>
-                      <CardHeader className="space-y-2">
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-                            <BadgeCheck className="size-3.5 text-primary" />
-                            <span className="font-medium text-foreground/85">
-                              {m.role}
-                            </span>
-                          </div>
-                          {termLabel(m.termStart, m.termEnd) ? (
-                            <Badge variant="outline" className="rounded-full">
-                              Masa tugas {termLabel(m.termStart, m.termEnd)}
-                            </Badge>
-                          ) : null}
-                        </div>
-                        <CardTitle className="text-base">{m.name}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="text-sm leading-7 text-muted-foreground">
-                        {m.bio}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                <UnitCards list={list} />
               </div>
             );
           })}
