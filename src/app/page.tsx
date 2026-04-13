@@ -33,8 +33,9 @@ export default async function Home() {
   const { admission } = await getPsbConfig();
   const siteUrl = getSiteUrl();
   const isLocal = siteUrl.includes("localhost");
-  const heroLocalPath = "/images/hero/gerbang-dqs.jpeg";
-  const heroAlt = "Gerbang Pondok Pesantren Tahfizh Daarul Qur’an Takhasus Putri Surakarta";
+  const heroLocalPath = "/images/campus/gerbang.webp";
+  const heroAlt =
+    "Gerbang Pondok Pesantren Tahfizh Daarul Qur’an Takhassus Putri Surakarta";
   const cloudName = getCloudinaryCloudName();
   const heroSrc =
     !isLocal && cloudName
