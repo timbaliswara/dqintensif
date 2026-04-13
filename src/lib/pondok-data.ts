@@ -129,7 +129,7 @@ export const pondok = {
   stats: [
     { label: "Santri aktif & alumni", value: "1.200+" },
     { label: "Hafizah lulusan", value: "Ribuan" },
-    { label: "Asatidz & pembina", value: "85" },
+    { label: "Asatidz & pembina", value: "20+" },
     { label: "Target tahfidz", value: "30 Juz" },
   ] satisfies Stat[],
   programs: [
