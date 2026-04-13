@@ -1,0 +1,113 @@
+[
+  {
+    "id": "pengasuh-utama",
+    "name": "Usth. (Nama Pengasuh Utama)",
+    "role": "Pengasuh Pesantren Putri",
+    "unit": "Pengasuh",
+    "termStart": "2026",
+    "photo": "/images/activities/ustadzah-menyampaikan-materi.webp",
+    "bio": "Mengarah­kan visi pembinaan santriwati: adab, riyadhoh, ritme ibadah, dan ketenangan belajar.",
+    "order": 1,
+    "published": true
+  },
+  {
+    "id": "pengasuh-bidang-adab",
+    "name": "Usth. (Nama Pengasuh Bidang)",
+    "role": "Pengasuh Bidang Adab & Pengasuhan",
+    "unit": "Pengasuh",
+    "termStart": "2026",
+    "photo": "/images/activities/halaqah-muslimah.webp",
+    "bio": "Menguatkan budaya adab majelis, komunikasi wali santri, dan pendampingan harian yang tertib.",
+    "order": 2,
+    "published": true
+  },
+  {
+    "id": "pimpinan-operasional",
+    "name": "Tim Pengelola DQS Cemani",
+    "role": "Koordinator Operasional",
+    "unit": "Pimpinan",
+    "termStart": "2026",
+    "photo": "/images/campus/gerbang.webp",
+    "bio": "Mengelola alur layanan, administrasi, dan koordinasi unit agar kegiatan berjalan rapi dan terukur.",
+    "order": 10,
+    "published": true
+  },
+  {
+    "id": "wali-asrama-1",
+    "name": "Usth. (Nama Wali Asrama)",
+    "role": "Wali Asrama",
+    "unit": "Pengasuhan",
+    "termStart": "2026",
+    "photo": "/images/campus/asrama.webp",
+    "bio": "Pendampingan rutinitas asrama: kebersihan, ketertiban, keamanan, dan pembiasaan ibadah.",
+    "order": 20,
+    "published": true
+  },
+  {
+    "id": "pengasuhan-komunikasi-wali",
+    "name": "Admin Asrama (Resmi)",
+    "role": "Komunikasi Wali Santri",
+    "unit": "Pengasuhan",
+    "termStart": "2026",
+    "photo": "/images/gallery/catatan-belajar.webp",
+    "bio": "Kanal komunikasi wali santri: jadwal kunjungan, konfirmasi informasi, dan pendampingan layanan.",
+    "order": 21,
+    "published": true
+  },
+  {
+    "id": "koor-tahfidz",
+    "name": "Usth. (Nama Koordinator)",
+    "role": "Koordinator Tahfidz",
+    "unit": "Tahfidz",
+    "termStart": "2026",
+    "photo": "/images/activities/tahfizh.webp",
+    "bio": "Mengawal halaqah: tahsin, setoran, muroja’ah, evaluasi, dan target bertahap sesuai kemampuan.",
+    "order": 30,
+    "published": true
+  },
+  {
+    "id": "musyrifah-halaqah",
+    "name": "Usth. (Nama Musyrifah)",
+    "role": "Musyrifah Halaqah",
+    "unit": "Tahfidz",
+    "termStart": "2026",
+    "photo": "/images/activities/halaqah-muslimah.webp",
+    "bio": "Pendampingan dekat per kelompok agar bacaan tartil, hafalan kuat, dan adab majelis terjaga.",
+    "order": 31,
+    "published": true
+  },
+  {
+    "id": "kepala-diniyah",
+    "name": "Usth. (Nama Kepala Diniyah)",
+    "role": "Kepala Bagian Diniyah",
+    "unit": "Diniyah",
+    "termStart": "2026",
+    "photo": "/images/gallery/kitab-turats.webp",
+    "bio": "Mengelola dirosah dan kajian turats bertahap untuk menjaga pemahaman yang tertib dan beradab.",
+    "order": 40,
+    "published": true
+  },
+  {
+    "id": "akademik-smp",
+    "name": "Tim Akademik",
+    "role": "Koordinator Akademik (SMP)",
+    "unit": "Akademik",
+    "termStart": "2026",
+    "photo": "/images/gallery/quran-on-shelf.webp",
+    "bio": "Koordinasi pembelajaran formal, pendampingan belajar, dan administrasi akademik santriwati.",
+    "order": 50,
+    "published": true
+  },
+  {
+    "id": "humas-psb",
+    "name": "Admin Resmi DQS Cemani",
+    "role": "Humas & PSB",
+    "unit": "Humas/PSB",
+    "termStart": "2026",
+    "photo": "/images/campus/masjid.webp",
+    "bio": "Satu pintu informasi resmi: PSB, jadwal kunjungan, dan pengumuman penting. Hindari info tidak resmi.",
+    "order": 60,
+    "published": true
+  }
+]
+
