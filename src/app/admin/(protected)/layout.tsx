@@ -10,6 +10,7 @@ import {
   Settings,
   Stamp,
   Tickets,
+  Activity,
   UserCog,
 } from "lucide-react";
 
@@ -30,6 +31,7 @@ const nav = [
   { href: "/admin/psb", label: "PSB", icon: Tickets },
   { href: "/admin/profil", label: "Profil & Legal", icon: Settings },
   { href: "/admin/manajemen", label: "Manajemen", icon: UserCog },
+  { href: "/admin/status", label: "Status", icon: Activity },
 ] as const;
 
 export default async function AdminProtectedLayout({
