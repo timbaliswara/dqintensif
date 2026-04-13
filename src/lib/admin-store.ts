@@ -58,8 +58,18 @@ async function writeJsonFile<T>(fileName: string, value: T) {
   await fs.writeFile(filePath, JSON.stringify(value, null, 2) + "\n", "utf8");
 }
 
+function ensureArray<T>(value: unknown, fallback: readonly T[]) {
+  return Array.isArray(value) ? (value as T[]) : [...fallback];
+}
+
+function ensureObject<T>(value: unknown, fallback: T) {
+  if (!value || typeof value !== "object") return fallback;
+  return value as T;
+}
+
 export async function readAgendaEvents<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("agenda.json", [...fallback]);
+  const value = await readJsonFile<unknown>("agenda.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeAgendaEvents<T>(value: readonly T[]) {
@@ -67,7 +77,8 @@ export async function writeAgendaEvents<T>(value: readonly T[]) {
 }
 
 export async function readAnnouncements<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("announcements.json", [...fallback]);
+  const value = await readJsonFile<unknown>("announcements.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeAnnouncements<T>(value: readonly T[]) {
@@ -75,7 +86,8 @@ export async function writeAnnouncements<T>(value: readonly T[]) {
 }
 
 export async function readArticles<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("articles.json", [...fallback]);
+  const value = await readJsonFile<unknown>("articles.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeArticles<T>(value: readonly T[]) {
@@ -83,7 +95,8 @@ export async function writeArticles<T>(value: readonly T[]) {
 }
 
 export async function readGalleryItems<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("gallery.json", [...fallback]);
+  const value = await readJsonFile<unknown>("gallery.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeGalleryItems<T>(value: readonly T[]) {
@@ -91,7 +104,8 @@ export async function writeGalleryItems<T>(value: readonly T[]) {
 }
 
 export async function readTestimonials<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("testimonials.json", [...fallback]);
+  const value = await readJsonFile<unknown>("testimonials.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeTestimonials<T>(value: readonly T[]) {
@@ -99,7 +113,8 @@ export async function writeTestimonials<T>(value: readonly T[]) {
 }
 
 export async function readFaqItems<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("faq.json", [...fallback]);
+  const value = await readJsonFile<unknown>("faq.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeFaqItems<T>(value: readonly T[]) {
@@ -107,7 +122,8 @@ export async function writeFaqItems<T>(value: readonly T[]) {
 }
 
 export async function readSiteConfig<T>(fallback: T) {
-  return readJsonFile<T>("site.json", fallback);
+  const value = await readJsonFile<unknown>("site.json", fallback);
+  return ensureObject<T>(value, fallback);
 }
 
 export async function writeSiteConfig<T>(value: T) {
@@ -115,7 +131,8 @@ export async function writeSiteConfig<T>(value: T) {
 }
 
 export async function readPsbConfig<T>(fallback: T) {
-  return readJsonFile<T>("psb.json", fallback);
+  const value = await readJsonFile<unknown>("psb.json", fallback);
+  return ensureObject<T>(value, fallback);
 }
 
 export async function writePsbConfig<T>(value: T) {
@@ -123,7 +140,8 @@ export async function writePsbConfig<T>(value: T) {
 }
 
 export async function readManagementMembers<T>(fallback: readonly T[]) {
-  return readJsonFile<T[]>("management.json", [...fallback]);
+  const value = await readJsonFile<unknown>("management.json", [...fallback]);
+  return ensureArray<T>(value, fallback);
 }
 
 export async function writeManagementMembers<T>(value: readonly T[]) {

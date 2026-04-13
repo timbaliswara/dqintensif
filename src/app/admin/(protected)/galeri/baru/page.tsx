@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { createGalleryItemAction } from "@/app/admin/(protected)/galeri/actions";
 import { galleryCategories } from "@/lib/gallery";
+import { AdminNotice } from "@/components/admin/admin-notice";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ function Input({
 export default function AdminGalleryNewPage() {
   return (
     <div className="space-y-6">
+      <AdminNotice />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">Galeri</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
