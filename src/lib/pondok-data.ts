@@ -227,7 +227,7 @@ export const pondok = {
       focus: "Fiqh & Usul Fiqh",
       initials: "AF",
       bio: "Membina kajian dasar diniyah, adab majelis, dan penguatan pemahaman fiqh harian santri secara bertahap.",
-      photo: "/images/gallery/kitab-turats.webp",
+      photo: "/images/placeholders/ustadz.svg",
       credentials: ["Kajian turats bertahap", "Pembinaan adab majelis"],
     },
     {
@@ -236,7 +236,7 @@ export const pondok = {
       focus: "Tahsin & Manajemen Halaqah",
       initials: "NA",
       bio: "Mengawal halaqah tahfidz: tahsin, setoran, muroja’ah, evaluasi, dan pola target yang realistis agar santri istiqamah.",
-      photo: "/images/articles/kemuliaan-quran.webp",
+      photo: "/images/placeholders/ustadzah.svg",
       credentials: ["Tahsin & tajwid", "Manajemen halaqah", "Pembinaan muslimah"],
     },
     {
@@ -245,7 +245,7 @@ export const pondok = {
       focus: "Adab, Disiplin, dan Pembinaan Harian",
       initials: "RH",
       bio: "Mendampingi ritme harian asrama: kebersihan, ketertiban, ibadah berjamaah, dan pembiasaan adab yang konsisten.",
-      photo: "/images/campus/asrama.webp",
+      photo: "/images/placeholders/ustadz.svg",
       credentials: ["Pengasuhan asrama", "Pembinaan karakter"],
     },
     {
@@ -254,7 +254,7 @@ export const pondok = {
       focus: "Bahasa Arab & Public Speaking",
       initials: "SZ",
       bio: "Menguatkan bahasa Arab aktif dan kemampuan menyampaikan ilmu dengan santun melalui latihan bertahap dan pendampingan.",
-      photo: "/images/gallery/catatan-belajar.webp",
+      photo: "/images/placeholders/ustadzah.svg",
       credentials: ["Bahasa Arab", "Muhadharah", "Public speaking"],
     },
   ] satisfies Teacher[],
