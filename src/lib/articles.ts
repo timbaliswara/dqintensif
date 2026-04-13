@@ -115,7 +115,7 @@ const defaultArticles: readonly Article[] = [
       date: "13 April 2026",
       note: "Ringkasan materi kajian yang ditinjau agar selaras dengan adab dan manhaj pembinaan.",
     },
-    coverImage: "/images/articles/ceramah-menata-hati.webp",
+    coverImage: "/images/activities/kajian-rutin.webp",
     readTime: "7 menit",
     blocks: [
       {
@@ -181,7 +181,7 @@ const defaultArticles: readonly Article[] = [
       date: "10 April 2026",
       note: "Diringkas dari materi ceramah dan ditinjau ulang sebelum dipublikasikan.",
     },
-    coverImage: "/images/articles/ceramah-adab-digital.webp",
+    coverImage: "/images/activities/penyerahan-tahfidz-1.webp",
     readTime: "6 menit",
     blocks: [
       {
@@ -239,7 +239,7 @@ const defaultArticles: readonly Article[] = [
       date: "02 April 2026",
       note: "Materi kajian keluarga yang diringkas dan diverifikasi sebelum tayang.",
     },
-    coverImage: "/images/articles/ceramah-rumah-quran.webp",
+    coverImage: "/images/activities/majelis-tasmi.webp",
     readTime: "7 menit",
     blocks: [
       {
@@ -290,7 +290,7 @@ const defaultArticles: readonly Article[] = [
     dateISO: "2026-04-12",
     tags: ["Karakter", "Tarbiyah"],
     author: { name: "Tim Humas Pesantren", role: "Redaksi" },
-    coverImage: "/images/articles/kemuliaan-quran.webp",
+    coverImage: "/images/activities/kajian-rutin.webp",
     readTime: "6 menit",
     blocks: [
       {

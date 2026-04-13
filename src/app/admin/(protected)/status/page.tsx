@@ -4,6 +4,7 @@ import { isCloudinaryConfigured } from "@/lib/cloudinary";
 import { isSupabaseConfigured, getSupabaseAdmin } from "@/lib/supabase-admin";
 import { getSiteUrl } from "@/lib/site";
 import { seedSupabaseContentAction } from "@/app/admin/(protected)/status/actions";
+import { updateDemoCoverImagesAction } from "@/app/admin/(protected)/status/actions";
 import { AdminNotice } from "@/components/admin/admin-notice";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -158,6 +159,24 @@ export default async function AdminStatusPage() {
               Tombol nonaktif karena Supabase belum OK.
             </div>
           ) : null}
+        </CardContent>
+      </Card>
+
+      <Card className="bg-background">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">Update Cover Demo (Opsional)</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 text-sm leading-7 text-muted-foreground">
+          <p>
+            Jika Artikel/Pengumuman masih memakai cover demo lama, tombol ini akan
+            mengganti <span className="font-mono text-xs">coverImage</span> yang masih
+            default ke foto kegiatan terbaru (tanpa mengubah isi tulisan).
+          </p>
+          <form action={updateDemoCoverImagesAction}>
+            <Button type="submit" variant="outline" className="rounded-full">
+              Update cover demo
+            </Button>
+          </form>
         </CardContent>
       </Card>
     </div>

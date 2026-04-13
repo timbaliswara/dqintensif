@@ -140,7 +140,7 @@ const defaultAnnouncements: readonly Announcement[] = [
     displayDate: "26 April 2026",
     datePublishedISO: "2026-04-15T09:00:00+07:00",
     tag: "Pengumuman",
-    coverImage: "/images/campus/masjid.webp",
+    coverImage: "/images/activities/kunjungan-silaturahmi.webp",
     blocks: [
       {
         type: "p",
@@ -172,7 +172,7 @@ const defaultAnnouncements: readonly Announcement[] = [
     displayDate: "20 April 2026",
     datePublishedISO: "2026-04-10T10:00:00+07:00",
     tag: "Kegiatan",
-    coverImage: "/images/activities/tahfizh.webp",
+    coverImage: "/images/activities/kajian-rutin.webp",
     blocks: [
       {
         type: "p",
@@ -199,7 +199,7 @@ const defaultAnnouncements: readonly Announcement[] = [
     displayDate: "12 April 2026",
     datePublishedISO: "2026-04-12T12:00:00+07:00",
     tag: "Pengumuman",
-    coverImage: "/images/campus/asrama.webp",
+    coverImage: "/images/activities/persiapan-acara.webp",
     blocks: [
       {
         type: "p",
@@ -229,7 +229,7 @@ const defaultAnnouncements: readonly Announcement[] = [
     displayDate: "18 Februari 2026",
     datePublishedISO: "2026-02-18T09:00:00+07:00",
     tag: "Prestasi",
-    coverImage: "/images/activities/muhadharah.webp",
+    coverImage: "/images/activities/penyerahan-tahfidz-2.webp",
     blocks: [
       {
         type: "p",

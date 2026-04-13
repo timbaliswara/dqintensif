@@ -114,3 +114,44 @@ export async function seedSupabaseContentAction() {
   );
 }
 
+function replaceCover(oldCover: string, map: Record<string, string>) {
+  return map[oldCover] ?? oldCover;
+}
+
+export async function updateDemoCoverImagesAction() {
+  await requireAdmin("/admin/status");
+
+  const announcementCovers: Record<string, string> = {
+    "/images/campus/masjid.webp": "/images/activities/kunjungan-silaturahmi.webp",
+    "/images/activities/tahfizh.webp": "/images/activities/kajian-rutin.webp",
+    "/images/campus/asrama.webp": "/images/activities/persiapan-acara.webp",
+    "/images/activities/muhadharah.webp": "/images/activities/penyerahan-tahfidz-2.webp",
+  };
+
+  const articleCovers: Record<string, string> = {
+    "/images/articles/ceramah-menata-hati.webp": "/images/activities/kajian-rutin.webp",
+    "/images/articles/ceramah-adab-digital.webp": "/images/activities/penyerahan-tahfidz-1.webp",
+    "/images/articles/ceramah-rumah-quran.webp": "/images/activities/majelis-tasmi.webp",
+    "/images/articles/kemuliaan-quran.webp": "/images/activities/kajian-rutin.webp",
+  };
+
+  const announcements = await listAnnouncements();
+  const nextAnnouncements = announcements.map((a) => ({
+    ...a,
+    coverImage: replaceCover(a.coverImage, announcementCovers),
+  }));
+  await writeAnnouncements(nextAnnouncements);
+
+  const articles = await listArticles();
+  const nextArticles = articles.map((a) => ({
+    ...a,
+    coverImage: replaceCover(a.coverImage, articleCovers),
+  }));
+  await writeArticles(nextArticles);
+
+  redirect(
+    noticeUrl("/admin/status", {
+      updatedCovers: "1",
+    }),
+  );
+}

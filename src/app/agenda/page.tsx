@@ -55,8 +55,8 @@ export default async function AgendaPage() {
         eyebrow="Agenda Terdekat"
         title="Kegiatan islami yang rapi, modern, dan terarah."
         description="Berikut agenda terdekat DQS Cemani: dauroh tahsin, kajian turats (bersanad), open house, workshop, dan jadwal PSB. Jadwal bersifat informatif—silakan konfirmasi ke admin."
-        imageSrc="/images/activities/halaqah-muslimah.webp"
-        imageAlt="Halaqah santriwati (muslimah)"
+        imageSrc="/images/activities/persiapan-acara.webp"
+        imageAlt="Persiapan acara santriwati"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
