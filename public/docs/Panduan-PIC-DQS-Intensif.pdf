@@ -1,0 +1,606 @@
+%PDF-1.4
+%ту╧╙
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+5 0 obj
+<< /Length 4242 >>
+stream
+BT
+/F2 18 Tf
+15 TL
+1 0 0 1 54.00 787.89 Tm
+(Panduan Akses & Operasional \(PIC\)  DQS Cemani \(Intensif\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 764.89 Tm
+(Tanggal: 2026-04-13) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 743.89 Tm
+(Dokumen singkat untuk PIC pengelola konten: login admin, update PSB, upload foto,) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 728.89 Tm
+(publikasi artikel/pengumuman, dan troubleshooting.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 707.89 Tm
+(Link Penting) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 688.89 Tm
+(" Website \(publik\): https://dqsintensif.com) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 673.89 Tm
+(" Admin panel: https://dqsintensif.com/admin) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 658.89 Tm
+(" Login admin: https://dqsintensif.com/admin/login) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 643.89 Tm
+(" Status konfigurasi: https://dqsintensif.com/admin/status) Tj
+ET
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 622.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 607.89 Tm
+(- Jika domain utama belum aktif, gunakan domain Vercel yang diinformasikan oleh tim) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 592.89 Tm
+(- \(contoh: https://dqintensif.vercel.app\).) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 571.89 Tm
+(WhatsApp Pendaftaran / Informasi) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 552.89 Tm
+(" Admin 1: +62 857-2808-3638) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 537.89 Tm
+(" Admin 2: +62 896-8257-2939) Tj
+ET
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 516.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 501.89 Tm
+(- Untuk info sensitif \(kuota, jadwal tes, biaya\), tetap arahkan ke kanal resmi/admin.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 486.89 Tm
+(- Hindari menyebar info di luar pengumuman resmi.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 465.89 Tm
+(Cara Login Admin) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 446.89 Tm
+(1. Buka halaman login admin.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 431.89 Tm
+(2. Masukkan password admin.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 416.89 Tm
+(3. Jika berhasil, Anda akan masuk dashboard admin.) Tj
+ET
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 395.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 380.89 Tm
+(- Login memakai cookie di browser. Untuk keluar, gunakan tombol Keluar di sidebar) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 365.89 Tm
+(- admin.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 344.89 Tm
+(Menu Admin & Fungsinya) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 325.89 Tm
+(" Agenda: event yang akan datang \(dauroh, open house, workshop, jadwal PSB\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 310.89 Tm
+(" Pengumuman: update resmi \(PSB, jadwal layanan, informasi penting, prestasi\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 295.89 Tm
+(" Artikel: tulisan edukatif \(ceramah ringkas, adab, parenting, tahfidz\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 280.89 Tm
+(" Galeri: upload foto + caption + kategori.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 265.89 Tm
+(" Testimoni: kutipan wali/alumni \(pastikan izin\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 250.89 Tm
+(" FAQ: pertanyaan yang sering ditanyakan calon wali santri.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 235.89 Tm
+(" PSB: alur & syarat PSB \(sensitif, update satu pintu\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 220.89 Tm
+(" Profil & Legal: kontak, alamat, jam layanan, maps, kanal resmi.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 205.89 Tm
+(" Manajemen & Pengasuhan: profil pengasuh/pengelola \(nama, peran, foto\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 190.89 Tm
+(" Status: cek Supabase/Cloudinary, seed konten, update cover demo.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 169.89 Tm
+(Cara Edit Konten \(Pola Umum\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 150.89 Tm
+(1. Masuk menu yang ingin diubah \(mis. Artikel / Pengumuman / Agenda / Galeri\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 135.89 Tm
+(2. Klik tombol Tambah untuk membuat konten baru, atau tombol Edit untuk mengubah) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 120.89 Tm
+(   konten yang sudah ada.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 105.89 Tm
+(3. Lengkapi judul, ringkasan, isi \(editor\), dan gambar cover/foto jika diperlukan.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 90.89 Tm
+(4. Klik Simpan dan tunggu notifikasi berhasil.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 2 0 R /F2 3 0 R /F3 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 4227 >>
+stream
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 787.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 772.89 Tm
+(- Jika terjadi error, form tidak akan hilang/reset karena ada draft otomatis. Cukup) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 757.89 Tm
+(- perbaiki bagian yang salah dan simpan lagi.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 736.89 Tm
+(Upload Gambar \(Cloudinary\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 717.89 Tm
+(1. Pilih file \(JPG/PNG/WebP; maks 5MB\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 702.89 Tm
+(2. Klik Simpan. Jika sukses, URL gambar otomatis tersimpan.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 687.89 Tm
+(3. Pastikan foto sesuai adab \(khusus muslimah\) dan kualitas jelas.) Tj
+ET
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 666.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 651.89 Tm
+(- Rasio yang nyaman untuk kartu/hero: 16:9 atau 16:10. Hindari foto blur/gelap.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 630.89 Tm
+(Draft Otomatis \(Tidak Perlu Input Ulang\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 611.89 Tm
+(Form admin menyimpan draft otomatis di browser. Jika gagal upload/ada error, data teks) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 596.89 Tm
+(tetap kembali saat halaman terbuka lagi.) Tj
+ET
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 575.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 560.89 Tm
+(- File upload \(pilih file\) tidak bisa dipulihkan otomatis oleh browser. Namun judul,) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 545.89 Tm
+(- caption, dan isi tulisan tetap tersimpan.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 524.89 Tm
+(Alur Kerja PIC \(Disarankan\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 505.89 Tm
+(" Update PSB: pastikan alur/syarat konsisten, lalu buat pengumuman jika ada) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 490.89 Tm
+(  perubahan penting.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 475.89 Tm
+(" Update Agenda: judul jelas, tanggal ISO benar, lokasi jelas, dan CTA mengarah ke) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 460.89 Tm
+(  kontak/admin.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 445.89 Tm
+(" Dokumentasi kegiatan: upload ke Galeri dengan caption + deskripsi singkat yang) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 430.89 Tm
+(  informatif.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 409.89 Tm
+(Troubleshooting Cepat) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 390.89 Tm
+(" Jika muncul error saat simpan: cek Admin Т Status \(Supabase & Cloudinary harus) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 375.89 Tm
+(  OK\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 360.89 Tm
+(" Jika konten belum berubah di publik: tunggu 530 detik, lalu hard refresh) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 345.89 Tm
+(  \(Cmd+Shift+R\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 330.89 Tm
+(" Jika Supabase kv_content kosong: Admin Т Status Т Salin konten awal ke Supabase.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 309.89 Tm
+(Melihat Data di Supabase \(Opsional\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 290.89 Tm
+(1. Buka dashboard Supabase proyek websitedq.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 275.89 Tm
+(2. Masuk menu Table Editor Т pilih tabel kv_content.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 260.89 Tm
+(3. Cari key sesuai menu \(articles.json, announcements.json, agenda.json,) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 245.89 Tm
+(   gallery.json, testimonials.json, faq.json, psb.json, site.json, management.json\).) Tj
+ET
+BT
+/F2 11 Tf
+15 TL
+1 0 0 1 54.00 224.89 Tm
+(Catatan:) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 209.89 Tm
+(- Kolom value berupa JSON. PIC tidak perlu mengedit JSON langsung; update dilakukan) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 194.89 Tm
+(- lewat admin panel.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 173.89 Tm
+(Standar Konten \(High Trust\)) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 154.89 Tm
+(" Foto sesuai adab \(muslimah berhijab\), terang, rapi, tidak blur.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 139.89 Tm
+(" Judul jelas, tidak clickbait, dan relevan untuk masyarakat umum.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 124.89 Tm
+(" Cantumkan tanggal dan konteks kegiatan \(mis. dauroh awal semester, agenda PSB\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 109.89 Tm
+(" Untuk testimoni: pastikan izin publikasi \(boleh inisial\), hindari data sensitif.) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 2 0 R /F2 3 0 R /F3 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 807 >>
+stream
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 787.89 Tm
+(Catatan Keamanan) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 768.89 Tm
+(" Password admin & secret jangan dibagikan.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 753.89 Tm
+(" Batasi akses admin hanya untuk PIC yang dipercaya.) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 738.89 Tm
+(" Jika ada indikasi bocor, segera ganti env admin di Vercel.) Tj
+ET
+BT
+/F2 14 Tf
+15 TL
+1 0 0 1 54.00 717.89 Tm
+(Jika Butuh Bantuan Cepat) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 698.89 Tm
+(" Cek Admin Т Status dulu \(sering paling cepat menyelesaikan masalah\).) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 683.89 Tm
+(" Jika masih error: catat menu yang gagal + pesan error + perangkat \(HP/desktop\) +) Tj
+ET
+BT
+/F1 11 Tf
+15 TL
+1 0 0 1 54.00 668.89 Tm
+(  browser \(Chrome/Safari\).) Tj
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 2 0 R /F2 3 0 R /F3 4 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Type /Pages /Count 3 /Kids [6 0 R 8 0 R 10 0 R] >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000209 00000 n 
+0000000277 00000 n 
+0000004532 00000 n 
+0000004684 00000 n 
+0000008924 00000 n 
+0000009076 00000 n 
+0000009921 00000 n 
+0000010074 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+10145
+%%EOF

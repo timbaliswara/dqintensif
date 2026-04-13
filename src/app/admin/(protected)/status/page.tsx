@@ -1,4 +1,4 @@
-import { AlertCircle, CheckCircle2, ExternalLink } from "lucide-react";
+import { AlertCircle, CheckCircle2, Download, ExternalLink } from "lucide-react";
 
 import { isCloudinaryConfigured } from "@/lib/cloudinary";
 import { isSupabaseConfigured, getSupabaseAdmin } from "@/lib/supabase-admin";
@@ -177,6 +177,28 @@ export default async function AdminStatusPage() {
               Update cover demo
             </Button>
           </form>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-background">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">Panduan PIC (PDF)</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 text-sm leading-7 text-muted-foreground">
+          <p>
+            Unduh panduan singkat untuk operasional harian PIC: login admin, update
+            PSB, upload foto, dan troubleshooting.
+          </p>
+          <Button asChild variant="outline" className="rounded-full">
+            <a
+              href="/docs/Panduan-PIC-DQS-Intensif.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Buka/Unduh PDF
+              <Download className="ml-2 size-4" />
+            </a>
+          </Button>
         </CardContent>
       </Card>
     </div>
