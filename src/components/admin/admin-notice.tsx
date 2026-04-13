@@ -11,6 +11,7 @@ const messages: Record<string, string> = {
   created: "Berhasil dibuat.",
   updated: "Perubahan berhasil disimpan.",
   deleted: "Berhasil dihapus.",
+  seeded: "Konten awal berhasil disalin ke Supabase.",
 };
 
 export function AdminNotice({ className }: { className?: string }) {

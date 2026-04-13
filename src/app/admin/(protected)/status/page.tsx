@@ -3,6 +3,8 @@ import { AlertCircle, CheckCircle2, ExternalLink } from "lucide-react";
 import { isCloudinaryConfigured } from "@/lib/cloudinary";
 import { isSupabaseConfigured, getSupabaseAdmin } from "@/lib/supabase-admin";
 import { getSiteUrl } from "@/lib/site";
+import { seedSupabaseContentAction } from "@/app/admin/(protected)/status/actions";
+import { AdminNotice } from "@/components/admin/admin-notice";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -73,6 +75,7 @@ export default async function AdminStatusPage() {
 
   return (
     <div className="space-y-6">
+      <AdminNotice />
       <div className="rounded-3xl border bg-muted/20 p-6">
         <div className="text-sm font-semibold text-primary">Status</div>
         <h1 className="mt-2 text-balance text-3xl font-semibold tracking-tight">
@@ -130,7 +133,33 @@ export default async function AdminStatusPage() {
           </Button>
         </CardContent>
       </Card>
+
+      <Card className="bg-background">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">Seed Konten (Opsional)</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 text-sm leading-7 text-muted-foreground">
+          <p>
+            Jika tabel <span className="font-mono text-xs">kv_content</span> masih
+            kosong, Anda bisa menyalin konten awal (dummy) ke Supabase sekali klik.
+            Ini tidak akan menimpa data yang sudah ada.
+          </p>
+          <form action={seedSupabaseContentAction}>
+            <Button
+              type="submit"
+              className="rounded-full"
+              disabled={!supabaseHealth.ok}
+            >
+              Salin konten awal ke Supabase
+            </Button>
+          </form>
+          {!supabaseHealth.ok ? (
+            <div className="text-xs text-muted-foreground">
+              Tombol nonaktif karena Supabase belum OK.
+            </div>
+          ) : null}
+        </CardContent>
+      </Card>
     </div>
   );
 }
-
