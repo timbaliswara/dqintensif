@@ -1,4 +1,5 @@
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -35,6 +36,7 @@ function Input({
 
 export default async function AdminProfilePage() {
   const { profile, contact, legal } = await getSiteConfig();
+  const draftKey = "admin-profil";
 
   const foundationText = legal.foundation
     .map((f) => `${f.name} — ${f.role}`)
@@ -49,6 +51,7 @@ export default async function AdminProfilePage() {
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">
           Profil & Kanal Resmi
@@ -67,7 +70,11 @@ export default async function AdminProfilePage() {
           <CardTitle className="text-base">Pengaturan</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={updateSiteConfigAction} className="grid gap-8">
+          <form
+            action={updateSiteConfigAction}
+            className="grid gap-8"
+            data-draft-key={draftKey}
+          >
             <div className="space-y-4">
               <div className="text-sm font-semibold">Profil</div>
               <div className="grid gap-4 md:grid-cols-2">

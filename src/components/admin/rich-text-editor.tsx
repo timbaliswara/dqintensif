@@ -29,6 +29,7 @@ type Props = {
   defaultValue?: string;
   placeholder?: string;
   className?: string;
+  draftKey?: string;
 };
 
 function ToolbarButton({
@@ -65,8 +66,10 @@ export function RichTextEditor({
   defaultValue,
   placeholder,
   className,
+  draftKey,
 }: Props) {
   const [html, setHtml] = React.useState(defaultValue ?? "");
+  const restoredRef = React.useRef(false);
 
   const editor = useEditor({
     extensions: [
@@ -105,6 +108,24 @@ export function RichTextEditor({
     setHtml(editor.getHTML());
   }, [editor]);
 
+  React.useEffect(() => {
+    if (!editor) return;
+    if (!draftKey) return;
+    if (restoredRef.current) return;
+    restoredRef.current = true;
+    try {
+      const raw = localStorage.getItem(`dqs_admin_draft:${draftKey}`);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Record<string, unknown>;
+      const saved = parsed?.[name];
+      if (typeof saved !== "string" || !saved.trim()) return;
+      editor.commands.setContent(saved, false);
+      setHtml(saved);
+    } catch {
+      // ignore
+    }
+  }, [draftKey, editor, name]);
+
   function setLink() {
     if (!editor) return;
     const prev = editor.getAttributes("link").href as string | undefined;
@@ -128,7 +149,7 @@ export function RichTextEditor({
 
   return (
     <div className={cn("space-y-2", className)}>
-      <input type="hidden" name={name} value={html} />
+      <input data-admin-controlled="1" type="hidden" name={name} value={html} />
 
       <div className="flex flex-wrap gap-2 rounded-2xl border bg-muted/20 p-2">
         <ToolbarButton
@@ -234,4 +255,3 @@ export function RichTextEditor({
     </div>
   );
 }
-

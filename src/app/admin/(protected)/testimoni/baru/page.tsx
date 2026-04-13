@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import { createTestimonialAction } from "@/app/admin/(protected)/testimoni/actions";
+import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,8 +33,11 @@ function Input({
 }
 
 export default function AdminTestimonialsNewPage() {
+  const draftKey = "admin-testimoni-baru";
   return (
     <div className="space-y-6">
+      <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">Testimoni</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -48,7 +53,11 @@ export default function AdminTestimonialsNewPage() {
           <CardTitle className="text-base">Form testimoni</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createTestimonialAction} className="grid gap-5">
+          <form
+            action={createTestimonialAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Nama (boleh inisial)</Label>

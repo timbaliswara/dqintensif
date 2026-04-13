@@ -7,6 +7,7 @@ import {
 } from "@/app/admin/(protected)/pengumuman/actions";
 import { listAnnouncements } from "@/lib/announcements";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
 import { SubmitButton } from "@/components/admin/submit-button";
@@ -47,10 +48,12 @@ export default async function AdminPengumumanEditPage({
   const items = await listAnnouncements();
   const item = items.find((a) => a.slug === slug);
   if (!item) notFound();
+  const draftKey = `admin-pengumuman:${item.slug}`;
 
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">Pengumuman</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -66,7 +69,11 @@ export default async function AdminPengumumanEditPage({
           <CardTitle className="text-base">Form edit</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <form action={updateAnnouncementAction} className="grid gap-5">
+          <form
+            action={updateAnnouncementAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <input type="hidden" name="currentSlug" value={item.slug} />
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
@@ -123,6 +130,7 @@ export default async function AdminPengumumanEditPage({
               defaultPath={item.coverImage}
               label="Cover image"
               helperText="Jika upload file, cover akan otomatis diganti. Kalau tidak, pakai path yang ada."
+              draftKey={draftKey}
             />
 
             <div className="space-y-2">
@@ -131,6 +139,7 @@ export default async function AdminPengumumanEditPage({
                 name="contentHtml"
                 defaultValue={item.contentHtml}
                 placeholder="Tulis pengumuman di sini…"
+                draftKey={draftKey}
               />
             </div>
 

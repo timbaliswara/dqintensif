@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { deleteAgendaAction, updateAgendaAction } from "@/app/admin/(protected)/agenda/actions";
 import { listAgendaEvents } from "@/lib/agenda";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,10 +43,12 @@ export default async function AdminAgendaEditPage({
   const events = await listAgendaEvents();
   const item = events.find((e) => e.slug === slug);
   if (!item) notFound();
+  const draftKey = `admin-agenda:${item.slug}`;
 
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">Agenda</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -61,7 +64,11 @@ export default async function AdminAgendaEditPage({
           <CardTitle className="text-base">Form edit</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <form action={updateAgendaAction} className="grid gap-5">
+          <form
+            action={updateAgendaAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <input type="hidden" name="currentSlug" value={item.slug} />
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">

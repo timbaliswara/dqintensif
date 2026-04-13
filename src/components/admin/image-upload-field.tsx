@@ -13,12 +13,14 @@ export function ImageUploadField({
   defaultPath,
   label = "Cover image",
   helperText,
+  draftKey,
 }: {
   nameFile: string;
   namePath: string;
   defaultPath?: string;
   label?: string;
   helperText?: string;
+  draftKey?: string;
 }) {
   const [path, setPath] = React.useState(defaultPath ?? "");
   const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
@@ -28,6 +30,21 @@ export function ImageUploadField({
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
   }, [previewUrl]);
+
+  React.useEffect(() => {
+    if (!draftKey) return;
+    try {
+      const raw = localStorage.getItem(`dqs_admin_draft:${draftKey}`);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Record<string, unknown>;
+      const saved = parsed?.[namePath];
+      if (typeof saved === "string" && saved.trim()) {
+        setPath(saved);
+      }
+    } catch {
+      // ignore
+    }
+  }, [draftKey, namePath]);
 
   function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -82,6 +99,7 @@ export function ImageUploadField({
               value={path}
               onChange={(e) => setPath(e.target.value)}
               placeholder="/images/campus/masjid.webp"
+              data-admin-controlled="1"
               className="mt-3 h-10 w-full rounded-xl border bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
             />
             {helperText ? (
@@ -118,4 +136,3 @@ export function ImageUploadField({
     </div>
   );
 }
-

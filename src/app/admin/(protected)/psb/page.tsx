@@ -1,4 +1,5 @@
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -12,10 +13,12 @@ export const metadata = {
 
 export default async function AdminPsbPage() {
   const { admission } = await getPsbConfig();
+  const draftKey = "admin-psb";
 
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">PSB</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -32,7 +35,11 @@ export default async function AdminPsbPage() {
           <CardTitle className="text-base">Pengaturan PSB</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={updatePsbConfigAction} className="grid gap-5">
+          <form
+            action={updatePsbConfigAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="space-y-2">
               <Label>Headline</Label>
               <input

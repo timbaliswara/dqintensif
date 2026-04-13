@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { createArticleAction } from "@/app/admin/(protected)/artikel/actions";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
 import { SubmitButton } from "@/components/admin/submit-button";
@@ -41,9 +42,11 @@ const defaultHtml = [
 ].join("");
 
 export default function AdminArtikelNewPage() {
+  const draftKey = "admin-artikel-baru";
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">Artikel</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -60,7 +63,11 @@ export default function AdminArtikelNewPage() {
           <CardTitle className="text-base">Form artikel</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createArticleAction} className="grid gap-5">
+          <form
+            action={createArticleAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Judul</Label>
@@ -145,6 +152,7 @@ export default function AdminArtikelNewPage() {
               defaultPath="/images/articles/ceramah-menata-hati.webp"
               label="Cover image"
               helperText="Upload cover baru, atau pakai path gambar yang sudah ada."
+              draftKey={draftKey}
             />
 
             <div className="space-y-2">
@@ -153,6 +161,7 @@ export default function AdminArtikelNewPage() {
                 name="contentHtml"
                 defaultValue={defaultHtml}
                 placeholder="Tulis artikel di sini…"
+                draftKey={draftKey}
               />
             </div>
 

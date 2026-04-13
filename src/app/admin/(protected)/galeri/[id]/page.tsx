@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { deleteGalleryItemAction, updateGalleryItemAction } from "@/app/admin/(protected)/galeri/actions";
 import { galleryCategories, listGalleryItems } from "@/lib/gallery";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
@@ -43,10 +44,12 @@ export default async function AdminGalleryEditPage({
   const items = await listGalleryItems();
   const item = items.find((g) => g.id === id);
   if (!item) notFound();
+  const draftKey = `admin-galeri:${item.id}`;
 
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">Galeri</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -62,7 +65,11 @@ export default async function AdminGalleryEditPage({
           <CardTitle className="text-base">Form edit</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <form action={updateGalleryItemAction} className="grid gap-5">
+          <form
+            action={updateGalleryItemAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <input type="hidden" name="currentId" value={item.id} />
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -107,6 +114,7 @@ export default async function AdminGalleryEditPage({
               defaultPath={item.src}
               label="Foto galeri"
               helperText="Upload untuk mengganti gambar, atau pakai path untuk mengambil dari /public/images."
+              draftKey={draftKey}
             />
 
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-between">

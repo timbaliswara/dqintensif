@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createGalleryItemAction } from "@/app/admin/(protected)/galeri/actions";
 import { galleryCategories } from "@/lib/gallery";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
@@ -34,9 +35,11 @@ function Input({
 }
 
 export default function AdminGalleryNewPage() {
+  const draftKey = "admin-galeri-baru";
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">Galeri</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -52,7 +55,11 @@ export default function AdminGalleryNewPage() {
           <CardTitle className="text-base">Form galeri</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createGalleryItemAction} className="grid gap-5">
+          <form
+            action={createGalleryItemAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Judul / Caption</Label>
@@ -94,6 +101,7 @@ export default function AdminGalleryNewPage() {
               namePath="src"
               label="Foto galeri"
               helperText="Upload langsung di sini (akan tersimpan di Cloudinary saat production)."
+              draftKey={draftKey}
             />
 
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-between">

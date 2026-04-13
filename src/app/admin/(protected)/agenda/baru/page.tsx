@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import { createAgendaAction } from "@/app/admin/(protected)/agenda/actions";
+import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,8 +25,11 @@ function Input({ name, placeholder, defaultValue }: { name: string; placeholder?
 }
 
 export default function AdminAgendaNewPage() {
+  const draftKey = "admin-agenda-baru";
   return (
     <div className="space-y-6">
+      <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">Agenda</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -40,7 +45,11 @@ export default function AdminAgendaNewPage() {
           <CardTitle className="text-base">Form agenda</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createAgendaAction} className="grid gap-5">
+          <form
+            action={createAgendaAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Judul</Label>

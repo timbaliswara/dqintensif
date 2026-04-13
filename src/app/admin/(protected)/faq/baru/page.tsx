@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import { createFaqItemAction } from "@/app/admin/(protected)/faq/actions";
+import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,8 +33,11 @@ function Input({
 }
 
 export default function AdminFaqNewPage() {
+  const draftKey = "admin-faq-baru";
   return (
     <div className="space-y-6">
+      <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">FAQ</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -48,7 +53,11 @@ export default function AdminFaqNewPage() {
           <CardTitle className="text-base">Form FAQ</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createFaqItemAction} className="grid gap-5">
+          <form
+            action={createFaqItemAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Pertanyaan</Label>

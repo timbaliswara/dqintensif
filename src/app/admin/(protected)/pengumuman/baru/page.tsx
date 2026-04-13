@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import { createAnnouncementAction } from "@/app/admin/(protected)/pengumuman/actions";
+import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
 import { SubmitButton } from "@/components/admin/submit-button";
@@ -32,8 +34,11 @@ function Input({ name, placeholder, defaultValue }: { name: string; placeholder?
 }
 
 export default function AdminPengumumanNewPage() {
+  const draftKey = "admin-pengumuman-baru";
   return (
     <div className="space-y-6">
+      <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">Pengumuman</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -50,7 +55,11 @@ export default function AdminPengumumanNewPage() {
           <CardTitle className="text-base">Form pengumuman</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createAnnouncementAction} className="grid gap-5">
+          <form
+            action={createAnnouncementAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Judul</Label>
@@ -109,6 +118,7 @@ export default function AdminPengumumanNewPage() {
               defaultPath="/images/campus/gerbang.webp"
               label="Cover image"
               helperText="Anda bisa upload gambar baru, atau pakai path gambar yang sudah ada di folder public."
+              draftKey={draftKey}
             />
 
             <div className="space-y-2">
@@ -117,6 +127,7 @@ export default function AdminPengumumanNewPage() {
                 name="contentHtml"
                 defaultValue={defaultHtml}
                 placeholder="Tulis pengumuman di sini…"
+                draftKey={draftKey}
               />
             </div>
 

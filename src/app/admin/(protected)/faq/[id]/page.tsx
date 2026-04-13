@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { deleteFaqItemAction, updateFaqItemAction } from "@/app/admin/(protected)/faq/actions";
 import { listFaqItems } from "@/lib/faq";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,10 +43,12 @@ export default async function AdminFaqEditPage({
   const list = await listFaqItems({ includeDraft: true });
   const item = list.find((f) => f.id === id);
   if (!item) notFound();
+  const draftKey = `admin-faq:${item.id}`;
 
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="flex flex-col gap-2">
         <div className="text-sm font-semibold text-primary">FAQ</div>
         <h1 className="text-balance text-3xl font-semibold tracking-tight">
@@ -61,7 +64,11 @@ export default async function AdminFaqEditPage({
           <CardTitle className="text-base">Form edit</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <form action={updateFaqItemAction} className="grid gap-5">
+          <form
+            action={updateFaqItemAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <input type="hidden" name="currentId" value={item.id} />
 
             <div className="grid gap-4 md:grid-cols-2">

@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { createManagementMemberAction } from "@/app/admin/(protected)/manajemen/actions";
 import { managementUnits } from "@/lib/management";
+import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
@@ -36,8 +38,11 @@ function Input({
 }
 
 export default function AdminManagementNewPage() {
+  const draftKey = "admin-manajemen-baru";
   return (
     <div className="space-y-6">
+      <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">
           Manajemen & Pengasuhan
@@ -55,7 +60,11 @@ export default function AdminManagementNewPage() {
           <CardTitle className="text-base">Form</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createManagementMemberAction} className="grid gap-5">
+          <form
+            action={createManagementMemberAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>Nama</Label>
@@ -118,6 +127,7 @@ export default function AdminManagementNewPage() {
               namePath="photo"
               label="Foto"
               helperText="Upload langsung di sini (akan tersimpan di Cloudinary saat production)."
+              draftKey={draftKey}
             />
 
             <div className="space-y-2">

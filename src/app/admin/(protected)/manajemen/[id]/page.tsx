@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { deleteManagementMemberAction, updateManagementMemberAction } from "@/app/admin/(protected)/manajemen/actions";
 import { listManagementMembers, managementUnits } from "@/lib/management";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { AdminFormDraft } from "@/components/admin/form-draft";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
@@ -46,10 +47,12 @@ export default async function AdminManagementEditPage({
   const list = await listManagementMembers({ includeDraft: true });
   const item = list.find((m) => m.id === id);
   if (!item) notFound();
+  const draftKey = `admin-manajemen:${item.id}`;
 
   return (
     <div className="space-y-6">
       <AdminNotice />
+      <AdminFormDraft draftKey={draftKey} />
       <div className="space-y-2">
         <div className="text-sm font-semibold text-primary">
           Manajemen & Pengasuhan
@@ -67,7 +70,11 @@ export default async function AdminManagementEditPage({
           <CardTitle className="text-base">Form edit</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <form action={updateManagementMemberAction} className="grid gap-5">
+          <form
+            action={updateManagementMemberAction}
+            className="grid gap-5"
+            data-draft-key={draftKey}
+          >
             <input type="hidden" name="currentId" value={item.id} />
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -133,6 +140,7 @@ export default async function AdminManagementEditPage({
               defaultPath={item.photo}
               label="Foto"
               helperText="Upload untuk mengganti foto, atau pakai path dari /public/images."
+              draftKey={draftKey}
             />
 
             <div className="space-y-2">
