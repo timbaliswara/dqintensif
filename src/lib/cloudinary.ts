@@ -1,6 +1,5 @@
 import "server-only";
 
-import { v2 as cloudinary } from "cloudinary";
 import { Readable } from "node:stream";
 
 export function isCloudinaryConfigured() {
@@ -16,9 +15,14 @@ function getCloudinaryFolder() {
   return process.env.CLOUDINARY_FOLDER || "dqs-cemani";
 }
 
-function configureCloudinary() {
+function getCloudinaryConfigFromEnv() {
   const cloudinaryUrl = process.env.CLOUDINARY_URL;
   if (cloudinaryUrl) {
+    if (!cloudinaryUrl.startsWith("cloudinary://")) {
+      throw new Error(
+        "Invalid CLOUDINARY_URL protocol. URL should begin with 'cloudinary://'.",
+      );
+    }
     // Supports CLOUDINARY_URL format: cloudinary://<api_key>:<api_secret>@<cloud_name>
     const u = new URL(cloudinaryUrl);
     const cloudName = u.hostname;
@@ -27,13 +31,7 @@ function configureCloudinary() {
     if (!cloudName || !apiKey || !apiSecret) {
       throw new Error("CLOUDINARY_URL is invalid.");
     }
-    cloudinary.config({
-      cloud_name: cloudName,
-      api_key: apiKey,
-      api_secret: apiSecret,
-      secure: true,
-    });
-    return;
+    return { cloudName, apiKey, apiSecret };
   }
 
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
@@ -44,12 +42,7 @@ function configureCloudinary() {
       "Cloudinary is not configured. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET.",
     );
   }
-  cloudinary.config({
-    cloud_name: cloudName,
-    api_key: apiKey,
-    api_secret: apiSecret,
-    secure: true,
-  });
+  return { cloudName, apiKey, apiSecret };
 }
 
 export async function uploadImageToCloudinary(params: {
@@ -57,7 +50,17 @@ export async function uploadImageToCloudinary(params: {
   publicId: string;
   folder?: string;
 }) {
-  configureCloudinary();
+  // Dynamic import to avoid build-time failures if env vars are misconfigured.
+  // (Cloudinary SDK validates CLOUDINARY_URL on import in some environments.)
+  const { v2: cloudinary } = await import("cloudinary");
+
+  const cfg = getCloudinaryConfigFromEnv();
+  cloudinary.config({
+    cloud_name: cfg.cloudName,
+    api_key: cfg.apiKey,
+    api_secret: cfg.apiSecret,
+    secure: true,
+  });
 
   const buffer = Buffer.from(await params.file.arrayBuffer());
   const folder = params.folder ?? getCloudinaryFolder();
