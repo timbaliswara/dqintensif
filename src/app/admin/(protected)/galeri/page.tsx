@@ -63,11 +63,12 @@ export default async function AdminGalleryListPage() {
               <CardTitle className="text-base">{g.title}</CardTitle>
               <div className="text-sm text-muted-foreground">{g.description}</div>
             </CardHeader>
-            <CardContent className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div className="text-sm leading-7 text-muted-foreground">
-                Path: <span className="font-mono text-xs">{g.src}</span>
+            <CardContent className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+              <div className="min-w-0 text-sm leading-7 text-muted-foreground">
+                Path:{" "}
+                <span className="break-all font-mono text-xs">{g.src}</span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex shrink-0 gap-2">
                 <Button asChild variant="outline" className="rounded-full">
                   <Link href={`/admin/galeri/${g.id}`}>Edit</Link>
                 </Button>
@@ -82,4 +83,3 @@ export default async function AdminGalleryListPage() {
     </div>
   );
 }
-
