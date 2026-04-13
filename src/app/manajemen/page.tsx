@@ -24,6 +24,22 @@ function termLabel(start: string, end?: string) {
 
 export default async function ManajemenPage() {
   const members = await listManagementMembers();
+  const unitDescriptions: Record<string, string> = {
+    Pengasuh:
+      "Pengarah visi pembinaan santriwati—menjaga adab, ritme ibadah, dan ketenangan belajar.",
+    Pimpinan:
+      "Koordinasi operasional agar kegiatan, layanan wali santri, dan tata kelola berjalan rapi.",
+    Pengasuhan:
+      "Pendampingan harian di asrama: disiplin, kebersihan, keamanan, dan komunikasi wali santri.",
+    Tahfidz:
+      "Mengawal kualitas bacaan dan hafalan: halaqah, setoran, muroja’ah, evaluasi, dan target bertahap.",
+    Diniyah:
+      "Penguatan dirosah dan kajian turats agar pemahaman santri tertib dan bertanggung jawab.",
+    Akademik:
+      "Koordinasi pembelajaran formal, administrasi akademik, dan pendampingan capaian belajar.",
+    "Humas/PSB":
+      "Satu pintu informasi resmi: PSB, jadwal kunjungan, pengumuman penting, dan klarifikasi.",
+  };
 
   const byUnit = new Map<string, typeof members>();
   for (const unit of managementUnits) byUnit.set(unit, []);
@@ -91,8 +107,12 @@ export default async function ManajemenPage() {
                   <div>
                     <div className="text-sm font-semibold text-primary">{unit}</div>
                     <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
-                      Tim {unit.toLowerCase()}.
+                      Tim {unit}
                     </h2>
+                    <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
+                      {unitDescriptions[unit] ??
+                        "Ringkasan peran unit untuk membantu wali santri memahami struktur pengelolaan."}
+                    </p>
                   </div>
                   <Button asChild variant="outline" className="rounded-full">
                     <Link href="/kontak">Konfirmasi via admin</Link>
@@ -101,7 +121,7 @@ export default async function ManajemenPage() {
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {list.map((m) => (
-                    <Card key={m.id} className="bg-background">
+                    <Card key={m.id} className="overflow-hidden bg-background">
                       <div className="relative aspect-[16/10] w-full overflow-hidden">
                         <Image
                           src={m.photo}
@@ -110,17 +130,20 @@ export default async function ManajemenPage() {
                           className="object-cover"
                           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0" />
                       </div>
                       <CardHeader className="space-y-2">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <Badge className="rounded-full">
-                            <BadgeCheck className="mr-1 size-3.5" />
-                            {m.role}
-                          </Badge>
-                          {termLabel(m.termStart, m.termEnd) ? (
-                            <span className="text-xs text-muted-foreground">
-                              Masa tugas: {termLabel(m.termStart, m.termEnd)}
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                            <BadgeCheck className="size-3.5 text-primary" />
+                            <span className="font-medium text-foreground/85">
+                              {m.role}
                             </span>
+                          </div>
+                          {termLabel(m.termStart, m.termEnd) ? (
+                            <Badge variant="outline" className="rounded-full">
+                              Masa tugas {termLabel(m.termStart, m.termEnd)}
+                            </Badge>
                           ) : null}
                         </div>
                         <CardTitle className="text-base">{m.name}</CardTitle>
@@ -148,4 +171,3 @@ export default async function ManajemenPage() {
     </SiteShell>
   );
 }
-
