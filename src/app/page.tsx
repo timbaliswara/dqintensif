@@ -176,15 +176,23 @@ export default async function Home() {
                 {[
                   {
                     title: "Visi",
-                    desc: "Menyiapkan generasi ahli Al-Qur’an yang berdedikasi untuk ummat dan bangsa.",
+                    desc: "Mencetak Hamba Allah sholihah ahli Al-Qur’an berdedikasi tinggi.",
                   },
                   {
                     title: "Misi",
-                    desc: "Pembinaan Tahfidz Intensif secara holistik: membaca, menulis, menghafal, memahami, mengamalkan, riyadhoh, hingga mengajarkan Al-Qur’an.",
+                    desc: [
+                      "Mewujudkan pesantren yang solid dan kompetitif dalam pendidikan Al-Qur’an, Tahfidz, dan Dirosah Islamiyah berlandaskan aqidah Ahlussunnah wal Jama’ah.",
+                      "Menyelenggarakan pendidikan formal dan non formal.",
+                      "Menyelenggarakan kursus bahasa Arab dan baca kitab.",
+                      "Membangun jaringan stakeholder dalam maupun luar negeri.",
+                      "Mendorong prestasi santri dalam ilmu agama dan umum.",
+                      "Menyelenggarakan kursus kemasyarakatan.",
+                      "Mencintai NKRI dan dakwah rahmatan lil ‘alamin.",
+                    ],
                   },
                   {
-                    title: "Budaya",
-                    desc: "Mengaji kitab turats yang dibina ust dan ustadzah bersanad untuk menjaga kemuliaan Al-Qur’an.",
+                    title: "Motto",
+                    desc: "Jadikan Al-Qur’an ruh dalam segala aktivitasmu, maka kemudahan dan keberkahan menyertaimu.",
                   },
                 ].map((item) => (
                   <Card key={item.title} className="bg-background">
@@ -192,7 +200,15 @@ export default async function Home() {
                       <CardTitle className="text-base">{item.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="text-sm leading-7 text-muted-foreground">
-                      {item.desc}
+                      {Array.isArray(item.desc) ? (
+                        <ol className="grid list-decimal gap-1 pl-4">
+                          {item.desc.map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ol>
+                      ) : (
+                        <p>{item.desc}</p>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
