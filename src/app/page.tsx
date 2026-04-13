@@ -9,6 +9,8 @@ import { listTestimonials } from "@/lib/testimonials";
 import { listFaqItems } from "@/lib/faq";
 import { getSiteConfig } from "@/lib/site-config";
 import { getPsbConfig } from "@/lib/psb-config";
+import { buildCloudinaryFetchUrl, getCloudinaryCloudName } from "@/lib/cloudinary-public";
+import { getSiteUrl } from "@/lib/site";
 import { SiteHeader } from "@/components/landing/site-header";
 import { ProgramsTabs } from "@/components/landing/programs-tabs";
 import { FacilityIcon } from "@/components/landing/lucide-icon";
@@ -29,6 +31,19 @@ export default async function Home() {
   const faqItems = await listFaqItems();
   const { profile, contact } = await getSiteConfig();
   const { admission } = await getPsbConfig();
+  const siteUrl = getSiteUrl();
+  const isLocal = siteUrl.includes("localhost");
+  const heroLocalPath = "/images/hero/gerbang-dqs.jpeg";
+  const heroAlt = "Gerbang Pondok Pesantren Tahfizh Daarul Qur’an Takhasus Putri Surakarta";
+  const cloudName = getCloudinaryCloudName();
+  const heroSrc =
+    !isLocal && cloudName
+      ? buildCloudinaryFetchUrl({
+          cloudName,
+          sourceUrl: `${siteUrl}${heroLocalPath}`,
+          width: 1200,
+        })
+      : heroLocalPath;
   return (
     <div className="flex min-h-full flex-1 flex-col">
       <SiteHeader profile={profile} />
@@ -103,12 +118,13 @@ export default async function Home() {
                     <div className="overflow-hidden rounded-2xl border bg-muted/20">
                       <div className="relative aspect-[16/10] w-full">
                         <Image
-                          src="/images/campus/gerbang.webp"
-                          alt="Gerbang dan lingkungan pesantren"
+                          src={heroSrc}
+                          alt={heroAlt}
                           fill
                           className="object-cover"
                           sizes="(min-width: 1024px) 420px, 100vw"
                           priority
+                          unoptimized={!isLocal}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0" />
                         <div className="absolute bottom-3 left-3">
