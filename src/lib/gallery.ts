@@ -75,51 +75,91 @@ const defaultGalleryItems: readonly GalleryItem[] = [
     category: "Tahfidz",
   },
   {
-    id: "istiqlal",
-    src: "/images/gallery/istiqlal-twilight.webp",
-    title: "Arsitektur Masjid (Indonesia)",
+    id: "kajian-rutin",
+    src: "/images/activities/kajian-rutin.webp",
+    title: "Kajian Rutin Santriwati",
     description:
-      "Keindahan arsitektur islam Nusantara—simbol keteduhan, ketertiban, dan kemuliaan ibadah.",
-    category: "Ibadah",
+      "Majelis ilmu yang tertib: adab, catatan, dan pendampingan pembina yang konsisten.",
+    category: "Kajian",
   },
   {
-    id: "mosque-arches",
-    src: "/images/gallery/mosque-arches.webp",
-    title: "Ruang Shalat",
+    id: "kajian-umum-rutin",
+    src: "/images/activities/kajian-umum-rutin.webp",
+    title: "Kajian Umum",
     description:
-      "Ruang yang lapang membantu khusyuk; tempat terbaik untuk menguatkan hubungan dengan Al-Qur’an.",
-    category: "Ibadah",
+      "Kajian terbuka dengan suasana yang rapi dan nyaman untuk belajar bersama dan memperkuat amal.",
+    category: "Kajian",
   },
   {
-    id: "quran-hand",
-    src: "/images/gallery/quran-in-hand.webp",
-    title: "Tilawah",
+    id: "pengajian-umum",
+    src: "/images/activities/pengajian-umum.webp",
+    title: "Pengajian Umum",
     description:
-      "Kebiasaan tilawah harian—membentuk kedekatan dengan Al-Qur’an dan menguatkan tartil.",
+      "Agenda pembinaan keummatan—menjaga semangat belajar, memperbaiki niat, dan memperkuat ukhuwah.",
+    category: "Kajian",
+  },
+  {
+    id: "majelis-tasmi",
+    src: "/images/activities/majelis-tasmi.webp",
+    title: "Majelis Tasmi’ Al-Qur’an",
+    description:
+      "Tasmi’ dan evaluasi bacaan: menjaga kualitas tahfidz, tajwid, serta ketenangan dalam majelis.",
     category: "Tahfidz",
   },
   {
-    id: "quran-on-shelf",
-    src: "/images/gallery/quran-on-shelf.webp",
-    title: "Ruang Baca",
+    id: "penyerahan-tahfidz-1",
+    src: "/images/activities/penyerahan-tahfidz-1.webp",
+    title: "Apresiasi Tahfidz",
     description:
-      "Budaya literasi: menguatkan ilmu, adab majelis, dan konsistensi muroja’ah.",
-    category: "Kajian",
+      "Momen apresiasi untuk memotivasi santriwati—diringi doa dan nasihat agar tetap istiqamah.",
+    category: "Tahfidz",
   },
   {
-    id: "kitab",
-    src: "/images/gallery/kitab-turats.webp",
-    title: "Kitab Turats",
+    id: "penyerahan-tahfidz-2",
+    src: "/images/activities/penyerahan-tahfidz-2.webp",
+    title: "Penyerahan Tahfidz",
     description:
-      "Kajian kitab kuning sebagai penjaga adab, manhaj, dan pemahaman yang bertanggung jawab.",
-    category: "Kajian",
+      "Penguatan semangat: target terukur, adab yang dijaga, dan dukungan pembina dalam proses.",
+    category: "Tahfidz",
   },
   {
-    id: "notes",
-    src: "/images/gallery/catatan-belajar.webp",
-    title: "Catatan Pembinaan",
+    id: "penyerahan-sertifikat",
+    src: "/images/activities/penyerahan-sertifikat.webp",
+    title: "Penyerahan Sertifikat",
     description:
-      "Belajar yang rapi: target, evaluasi, dan tindak lanjut yang jelas untuk menjaga kualitas.",
+      "Dokumentasi kegiatan dan pencapaian—bagian dari pembinaan yang tertib dan mudah diverifikasi.",
+    category: "Kesantrian",
+  },
+  {
+    id: "persiapan-acara",
+    src: "/images/activities/persiapan-acara.webp",
+    title: "Persiapan Acara",
+    description:
+      "Keterlibatan santriwati dalam kegiatan: kerja sama, disiplin, dan tanggung jawab yang dilatih.",
+    category: "Kesantrian",
+  },
+  {
+    id: "kunjungan-silaturahmi",
+    src: "/images/activities/kunjungan-silaturahmi.webp",
+    title: "Kunjungan & Silaturahmi",
+    description:
+      "Membangun hubungan baik dengan wali dan tamu—dengan adab, tertib, dan komunikasi yang jelas.",
+    category: "Kesantrian",
+  },
+  {
+    id: "silaturahmi",
+    src: "/images/activities/silaturahmi.webp",
+    title: "Silaturahmi",
+    description:
+      "Menjaga ukhuwah dan kebersamaan dalam kegiatan pondok dengan suasana yang hangat dan terarah.",
+    category: "Kesantrian",
+  },
+  {
+    id: "silaturahmi-jamaah",
+    src: "/images/activities/silaturahmi-jamaah.webp",
+    title: "Silaturahmi Jamaah",
+    description:
+      "Kegiatan jamaah yang menumbuhkan kebersamaan—dengan adab, kerapian, dan suasana yang teduh.",
     category: "Kesantrian",
   },
 ] as const;
@@ -133,5 +173,11 @@ export const galleryCategories: readonly GalleryCategory[] = [
 ] as const;
 
 export async function listGalleryItems() {
-  return readGalleryItems(defaultGalleryItems);
+  const stored = await readGalleryItems<GalleryItem>([]);
+  const seen = new Set(stored.map((it) => it.id));
+  const merged = [...stored];
+  for (const item of defaultGalleryItems) {
+    if (!seen.has(item.id)) merged.push(item);
+  }
+  return merged;
 }
