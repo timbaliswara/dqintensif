@@ -1,5 +1,32 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Deployment (Vercel + Supabase + Cloudinary)
+
+Catatan:
+- Vercel bersifat serverless, jadi **file system tidak persisten** untuk fitur admin CRUD.
+- Repo ini mendukung penyimpanan konten admin di **Supabase** (1 tabel KV JSONB).
+- Upload gambar admin disarankan via **Cloudinary**.
+
+### Env vars
+
+Lihat `.env.example` untuk daftar lengkap.
+
+### Supabase (database)
+
+- Jalankan SQL: `supabase/schema.sql`
+- Set env: `SUPABASE_URL` dan `SUPABASE_SERVICE_ROLE_KEY`
+
+### Cloudinary (images)
+
+- Set env: `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+- Opsional: `CLOUDINARY_FOLDER`
+
+### Admin (production)
+
+Wajib set:
+- `ADMIN_PASSWORD`
+- `ADMIN_SECRET`
+
 ## Getting Started
 
 First, run the development server:
