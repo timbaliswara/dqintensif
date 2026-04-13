@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { createAgendaAction } from "@/app/admin/(protected)/agenda/actions";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -134,9 +135,9 @@ export default function AdminAgendaNewPage() {
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/agenda">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Menyimpan…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>

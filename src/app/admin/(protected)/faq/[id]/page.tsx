@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { deleteFaqItemAction, updateFaqItemAction } from "@/app/admin/(protected)/faq/actions";
 import { listFaqItems } from "@/lib/faq";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -105,22 +106,25 @@ export default async function AdminFaqEditPage({
                 <Button asChild variant="outline" className="rounded-full">
                   <Link href="/faq">Preview publik</Link>
                 </Button>
-                <Button type="submit" className="rounded-full">
+                <SubmitButton className="rounded-full" pendingText="Menyimpan…">
                   Simpan perubahan
-                </Button>
+                </SubmitButton>
               </div>
             </div>
           </form>
 
           <form action={deleteFaqItemAction}>
             <input type="hidden" name="id" value={item.id} />
-            <Button type="submit" variant="destructive" className="rounded-full">
+            <SubmitButton
+              variant="destructive"
+              className="rounded-full"
+              pendingText="Menghapus…"
+            >
               Hapus FAQ
-            </Button>
+            </SubmitButton>
           </form>
         </CardContent>
       </Card>
     </div>
   );
 }
-

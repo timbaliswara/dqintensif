@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { createTestimonialAction } from "@/app/admin/(protected)/testimoni/actions";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -119,9 +120,9 @@ export default function AdminTestimonialsNewPage() {
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/testimoni">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Menyimpan…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>
@@ -129,4 +130,3 @@ export default function AdminTestimonialsNewPage() {
     </div>
   );
 }
-

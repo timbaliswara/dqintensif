@@ -5,6 +5,7 @@ import { deleteGalleryItemAction, updateGalleryItemAction } from "@/app/admin/(p
 import { galleryCategories, listGalleryItems } from "@/lib/gallery";
 import { AdminNotice } from "@/components/admin/admin-notice";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -116,22 +117,25 @@ export default async function AdminGalleryEditPage({
                 <Button asChild variant="outline" className="rounded-full">
                   <Link href="/galeri">Preview publik</Link>
                 </Button>
-                <Button type="submit" className="rounded-full">
+                <SubmitButton className="rounded-full" pendingText="Sedang mengupload…">
                   Simpan perubahan
-                </Button>
+                </SubmitButton>
               </div>
             </div>
           </form>
 
           <form action={deleteGalleryItemAction}>
             <input type="hidden" name="id" value={item.id} />
-            <Button type="submit" variant="destructive" className="rounded-full">
+            <SubmitButton
+              variant="destructive"
+              className="rounded-full"
+              pendingText="Menghapus…"
+            >
               Hapus foto
-            </Button>
+            </SubmitButton>
           </form>
         </CardContent>
       </Card>
     </div>
   );
 }
-

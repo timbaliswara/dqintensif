@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createAnnouncementAction } from "@/app/admin/(protected)/pengumuman/actions";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -39,8 +40,8 @@ export default function AdminPengumumanNewPage() {
           Tambah pengumuman baru
         </h1>
         <p className="text-sm leading-7 text-muted-foreground">
-          Konten disimpan sebagai JSON blocks (terstruktur). Fokus pada informasi
-          resmi dan mudah dipahami.
+          Fokus pada informasi resmi dan mudah dipahami. Anda bisa upload cover
+          langsung di sini (akan tersimpan di Cloudinary saat production).
         </p>
       </div>
 
@@ -123,9 +124,9 @@ export default function AdminPengumumanNewPage() {
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/pengumuman">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Sedang mengupload…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>

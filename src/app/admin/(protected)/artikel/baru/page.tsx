@@ -4,6 +4,7 @@ import { createArticleAction } from "@/app/admin/(protected)/artikel/actions";
 import { AdminNotice } from "@/components/admin/admin-notice";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -159,9 +160,9 @@ export default function AdminArtikelNewPage() {
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/artikel">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Sedang mengupload…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>
@@ -169,4 +170,3 @@ export default function AdminArtikelNewPage() {
     </div>
   );
 }
-

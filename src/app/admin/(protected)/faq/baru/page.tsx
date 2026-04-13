@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { createFaqItemAction } from "@/app/admin/(protected)/faq/actions";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -81,9 +82,9 @@ export default function AdminFaqNewPage() {
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/faq">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Menyimpan…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>
@@ -91,4 +92,3 @@ export default function AdminFaqNewPage() {
     </div>
   );
 }
-

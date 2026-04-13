@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createGalleryItemAction } from "@/app/admin/(protected)/galeri/actions";
 import { galleryCategories } from "@/lib/gallery";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -90,16 +91,16 @@ export default function AdminGalleryNewPage() {
               nameFile="file"
               namePath="src"
               label="Foto galeri"
-              helperText="Jika upload, file akan disimpan ke /public/uploads."
+              helperText="Upload langsung di sini (akan tersimpan di Cloudinary saat production)."
             />
 
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-between">
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/galeri">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Sedang mengupload…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>
@@ -107,4 +108,3 @@ export default function AdminGalleryNewPage() {
     </div>
   );
 }
-

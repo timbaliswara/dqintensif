@@ -6,6 +6,7 @@ import { listArticles } from "@/lib/articles";
 import { AdminNotice } from "@/components/admin/admin-notice";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -178,22 +179,25 @@ export default async function AdminArtikelEditPage({
                 <Button asChild variant="outline" className="rounded-full">
                   <Link href={`/artikel/${item.slug}`}>Preview publik</Link>
                 </Button>
-                <Button type="submit" className="rounded-full">
+                <SubmitButton className="rounded-full" pendingText="Sedang mengupload…">
                   Simpan perubahan
-                </Button>
+                </SubmitButton>
               </div>
             </div>
           </form>
 
           <form action={deleteArticleAction}>
             <input type="hidden" name="slug" value={item.slug} />
-            <Button type="submit" variant="destructive" className="rounded-full">
+            <SubmitButton
+              variant="destructive"
+              className="rounded-full"
+              pendingText="Menghapus…"
+            >
               Hapus artikel
-            </Button>
+            </SubmitButton>
           </form>
         </CardContent>
       </Card>
     </div>
   );
 }
-

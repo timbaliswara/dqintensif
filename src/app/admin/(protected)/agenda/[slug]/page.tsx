@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { deleteAgendaAction, updateAgendaAction } from "@/app/admin/(protected)/agenda/actions";
 import { listAgendaEvents } from "@/lib/agenda";
 import { AdminNotice } from "@/components/admin/admin-notice";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -162,18 +163,22 @@ export default async function AdminAgendaEditPage({
                 <Button asChild variant="outline" className="rounded-full">
                   <Link href="/agenda">Preview publik</Link>
                 </Button>
-                <Button type="submit" className="rounded-full">
+                <SubmitButton className="rounded-full" pendingText="Menyimpan…">
                   Simpan perubahan
-                </Button>
+                </SubmitButton>
               </div>
             </div>
           </form>
 
           <form action={deleteAgendaAction}>
             <input type="hidden" name="slug" value={item.slug} />
-            <Button type="submit" variant="destructive" className="rounded-full">
+            <SubmitButton
+              variant="destructive"
+              className="rounded-full"
+              pendingText="Menghapus…"
+            >
               Hapus agenda
-            </Button>
+            </SubmitButton>
           </form>
         </CardContent>
       </Card>

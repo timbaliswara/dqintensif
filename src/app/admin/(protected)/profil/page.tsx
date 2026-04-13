@@ -1,5 +1,5 @@
 import { AdminNotice } from "@/components/admin/admin-notice";
-import { Button } from "@/components/ui/button";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -217,9 +217,9 @@ export default async function AdminProfilePage() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Menyimpan…">
                 Simpan pengaturan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>

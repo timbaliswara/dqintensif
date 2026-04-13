@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createManagementMemberAction } from "@/app/admin/(protected)/manajemen/actions";
 import { managementUnits } from "@/lib/management";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -116,7 +117,7 @@ export default function AdminManagementNewPage() {
               nameFile="photoFile"
               namePath="photo"
               label="Foto"
-              helperText="Jika upload, file akan disimpan ke /public/uploads."
+              helperText="Upload langsung di sini (akan tersimpan di Cloudinary saat production)."
             />
 
             <div className="space-y-2">
@@ -131,9 +132,9 @@ export default function AdminManagementNewPage() {
               <Button asChild variant="outline" className="rounded-full">
                 <Link href="/admin/manajemen">Batal</Link>
               </Button>
-              <Button type="submit" className="rounded-full">
+              <SubmitButton className="rounded-full" pendingText="Sedang mengupload…">
                 Simpan
-              </Button>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>
@@ -141,4 +142,3 @@ export default function AdminManagementNewPage() {
     </div>
   );
 }
-
