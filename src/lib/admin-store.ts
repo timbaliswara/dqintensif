@@ -50,7 +50,7 @@ async function writeJsonFile<T>(fileName: string, value: T) {
         },
         { onConflict: "key" },
       );
-    if (error) throw error;
+    if (error) throw new Error(`Supabase: ${error.message}`);
     return;
   }
   await ensureDir();
