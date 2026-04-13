@@ -127,10 +127,10 @@ export const pondok = {
     { label: "Kontak", href: "/kontak" },
   ] satisfies NavItem[],
   stats: [
-    { label: "Santri aktif", value: "1.200+" },
-    { label: "Hafizh 10+ juz", value: "320+" },
+    { label: "Santri aktif & alumni", value: "1.200+" },
+    { label: "Hafizah lulusan", value: "Ribuan" },
     { label: "Asatidz & pembina", value: "85" },
-    { label: "Luas area", value: "8 hektar" },
+    { label: "Target tahfidz", value: "30 Juz" },
   ] satisfies Stat[],
   programs: [
     {
