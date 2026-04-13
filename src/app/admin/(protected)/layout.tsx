@@ -20,6 +20,9 @@ import { getSiteConfig } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const nav = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/agenda", label: "Agenda", icon: CalendarDays },
